@@ -85,11 +85,11 @@ include('header.php')
                             <div class="row">
                                 <?php
 
-                                $sql = "SELECT * FROM books ";
+                                $sql = "SELECT * FROM books limit 4 ";
                                 $res = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_array($res)) { ?>
-                                
+
                                     <div class="col-3">
                                         <a href="book.php?bookisbn=1">
                                             <img src="./img/img-index/<?= $row['book_image']; ?>" alt="" class="img-responsive img-thumbnail">
