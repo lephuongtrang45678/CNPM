@@ -7,11 +7,7 @@ $search = mysqli_real_escape_string($conn, $_POST['search']);
 
 ?>
 
-
-
-
-
-<section class="books-menu">
+<section class="">
     <div class="container">
         <h5 class="">Sách mà bạn muốn tìm : <a class="text-danger text-decoration-none">"<?php echo $search ?>"</a></h5>
 
@@ -48,22 +44,17 @@ $search = mysqli_real_escape_string($conn, $_POST['search']);
             </div>
     </div>
 
-<?php
-        } else { ?>
-    <div class='error mt-3'>Sách không tìm thấy.</div>
-    <a href="add_books.php" class="text-decoration-none text-dark">
-        <h5>Bạn có thể cho tôi thêm thông tin sách bạn muốn có?</h5>
-    </a>
-<?php }
+    <?php
+            } else { ?>
+        <div class='error mt-3'>Sách không tìm thấy.</div>
+        <a href="add_books.php" class="text-decoration-none text-dark">
+            <h5>Bạn có thể cho tôi thêm thông tin sách bạn muốn có? </h5><i class="fas fa-folder-plus"></i>
+        </a>
+    <?php }
 
-?>
+    ?>
 
-
-<div class="clearfix"></div>
-
-
-
-</div>
+    </div>
 
 </section>
 

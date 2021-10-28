@@ -27,7 +27,7 @@ if (!$row) {
         <h5 class="mt-3 mb-3"><a href="books.php" class="text-decoration-none text-danger">Tất cả sách</a> > <?php echo $row['book_title']; ?></h5>
         <div class="row">
             <div class="col-md-3 text-center">
-                <img class="img-responsive img-thumbnail" src="img/img-index/<?php echo $row['book_image']; ?>">
+                <img class="img-thumbnail img-fluid" src="img/img-index/<?php echo $row['book_image']; ?>">
             </div>
             <div class="col-md-6">
                 <h4>Miêu tả về sách</h4>
@@ -60,8 +60,8 @@ if (!$row) {
 
                 <input type="hidden" name="book_title" value="<?php echo $row['book_title']; ?>">
                 <input type="hidden" name="book_price" value="<?php echo $row['book_price']; ?>">
-                <input type="number" name="quatity" value="1" class="form-control btn btn-outline-danger">
-                <input type="submit" value=" Thêm vào giỏ hàng" name="add_to_cart" class="btn btn-outline-danger ">
+                <input type="number" name="quatity" value="1" class="form-control btn mb-2 btn-outline-dark">
+                <input type="submit" value=" Thêm vào giỏ hàng" name="add_to_cart" class="form-control btn btn-outline-danger ">
     </form>
 
 
