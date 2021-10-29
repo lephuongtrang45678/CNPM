@@ -1,9 +1,11 @@
 <?php
-include('header.php');
+include('./constants.php');
 ob_start()
 ?>
 
-
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -31,7 +33,7 @@ ob_start()
                                                 <div class="d-flex flex-row align-items-center mb-4">
                                                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                                     <div class="form-outline flex-fill mb-0">
-                                                        <input type="text" id="firstName" name="firstName" class="form-control" value="Lê" />
+                                                        <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Lê" />
                                                         <label class="form-label" for="firstName">Họ</label>
                                                     </div>
                                                 </div>
@@ -39,18 +41,21 @@ ob_start()
                                                 <div class="d-flex flex-row align-items-center mb-4">
                                                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                                     <div class="form-outline flex-fill mb-0">
-                                                        <input type="text" id="lastName" name="lastName" class="form-control" value="Phương Trang" />
+                                                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Phương Trang" />
                                                         <label class="form-label" for="lastName">Tên</label>
                                                     </div>
                                                 </div>
 
                                                 <div class="d-flex flex-row align-items-center mb-4">
                                                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                                                    <div class="form-outline flex-fill mb-0">
-                                                        <input type="file" name="fileToUpload" id="fileToUpload" class="  form-control" value="chọn ảnh">
-                                                        <label class="form-label" for="avatar">Chọn ảnh</label>
-                                                        <div class="mb-3">
-                                                            <img src="<?php echo $row['avatar']; ?>" alt="" style="width : 10%">
+                                                    <div class="col">
+                                                        <label for="avatar" class="form-label">Thêm ảnh</label>
+                                                        <input type="file" id="fileToUpload" name="fileToUpload" class=" mb-3 form-control" value="chọn ảnh">
+                                                        <div class="preview mb-3">
+                                                            <div id="preview">
+                                                                <img src="#" hidden />
+                                                            </div>
+                                                            <div id="err"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -112,7 +117,7 @@ if (isset($_POST['submit'])) {
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];
 
-    $target_dir = ""; //chỉ định thư mục nơi tệp sẽ được đặt
+    $target_dir = "./administrators/img/img_user/"; //chỉ định thư mục nơi tệp sẽ được đặt
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
     $uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
@@ -150,7 +155,6 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    include('constants.php');
 
     $sql = "SELECT * FROM users WHERE email='$email' ";
 
@@ -221,4 +225,6 @@ if (isset($_POST['submit'])) {
     }
 }
 include('footer.php')
+
 ?>
+<script type="text/javascript" src="js/edit-js.js"></script>
