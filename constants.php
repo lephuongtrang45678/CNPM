@@ -11,7 +11,7 @@ $currency = '$'; //Currency sumbol or code
 
     $mysqli = new mysqli($localhost, $username, $password, $db_name);
     $conn = mysqli_connect($localhost,$username, $password , $db_name  ) ; //Database Connection
-    define('SITEURL', 'http://localhost/buy_book/');
+    define('SITEURL', 'http://localhost/PROJECT/');
 
 
 

@@ -14,7 +14,6 @@ include('./constants.php')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link href="style/style.css" rel="stylesheet" type="text/css">
     <title>Mua Sách Mới, Sách Hot, Sách Hay Nên Đọc Online</title>
-    <link rel="stylesheet" href="./main.css" class="">
 </head>
 
 <body>
@@ -54,7 +53,7 @@ include('./constants.php')
             <div class="col-5">
 
 
-                <form action="<?php echo SITEURL; ?>search.php" method="POST" class="d-flex boder">
+                <form action="search.php" method="POST" class="d-flex boder">
                     <select class="form-select w-25 me-2" aria-label="">
                         <option selected>Tất cả</option>
                         <option value="1">Sách - Truyện tranh</option>

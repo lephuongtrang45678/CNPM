@@ -48,7 +48,7 @@ $search = mysqli_real_escape_string($conn, $_POST['search']);
             } else { ?>
         <div class='error mt-3'>Sách không tìm thấy.</div>
         <a href="add_books.php" class="text-decoration-none text-dark">
-            <h5>Bạn có thể cho tôi thêm thông tin sách bạn muốn có? </h5><i class="fas fa-folder-plus"></i>
+            <h5>Bạn có thể cho tôi thêm thông tin sách bạn muốn có? <i class="fas fa-folder-plus"></i></h5>
         </a>
     <?php }
 
