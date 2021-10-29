@@ -1,5 +1,5 @@
 <?php
-session_start();
+ob_start();
 include("header.php");
 ?>
 
@@ -127,7 +127,7 @@ if (isset($_POST['submit'])) {
         //Create a Session Variable to Display Message
         $_SESSION['add'] = "<div class='danger'>thêm thành công</div>";
         // header("location: add_book_table.php");
-        header("Location:" . SITEURL . "add_book_table.php");
+        header("Location:add_book_table.php");
 
     } else {
 

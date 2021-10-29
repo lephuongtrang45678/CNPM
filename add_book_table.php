@@ -12,13 +12,29 @@ include('./header.php');
 
                 while ($row = mysqli_fetch_array($res)) { ?>
 
-                    <div class="col-3">
-                        <a href="#">
-                            <img src="./img/img-index/<?= $row['book_image']; ?>" alt="" class="img-responsive img-thumbnail">
-                            <input type="hidden" name="bookname" value="<?= $row['book_title'] ?>">
-                            <input type="hidden" name="bookprice" value="<?= $row['book_price'] ?>">
-                        </a>
-                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tên sách</th>
+                                <th scope="col">Tác giả</th>
+                                <th scope="col">Miêu tả sách</th>
+                                <th scope="col">Bìa sách</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"><?= $row['book_title'] ?></th>
+                                <td><?= $row['book_author'] ?></td>
+                                <td><?= $row['book_descr'] ?></td>
+                                <td><?= $row['book_image'] ?></td>
+                            </tr>
+                        </tbody>
+                        <?php
+                        if (isset($conn)) {
+                            mysqli_close($conn);
+                        }
+                        ?>
+                    </table>
                 <?php }
                 ?>
             </div>

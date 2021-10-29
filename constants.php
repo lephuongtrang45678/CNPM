@@ -1,8 +1,9 @@
 <?php
 
 $currency = '$'; //Currency sumbol or code
-
-
+if(!isset($_SESSION)){
+    session_start();
+}
     //Create Constants to Store Non Repeating Values
     $localhost = 'localhost';
     $username = 'root';

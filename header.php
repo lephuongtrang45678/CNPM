@@ -1,5 +1,5 @@
 <?php
-include('./constants.php')
+include('constants.php')
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +37,21 @@ include('./constants.php')
             <li class="nav-item">
                 <a href="cart.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-box-open"></i> Kiểm tra đơn hàng</a></a>
             </li>
-            <li class="nav-item">
-                <a href="./register.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-user-plus"></i> Đăng Ký</a></a>
-            </li>
-            <li class="nav-item">
-                <a href="./login.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng nhập </a></a>
-            </li>
+
+            <?php
+            if (isset($_SESSION['user'])) { ?>
+                <li class="nav-item">
+                    <a href="./logout.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng Xuất </a></a>
+                </li>
+            <?php } else { ?>
+                <li class="nav-item">
+                    <a href="./register.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-user-plus"></i> Đăng Ký</a></a>
+                </li>
+                <li class="nav-item">
+                    <a href="./login.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng nhập </a></a>
+                </li>
+            <?php }
+            ?>
         </ul>
     </div>
     <div class="container-fluid mt-4 mb-4">

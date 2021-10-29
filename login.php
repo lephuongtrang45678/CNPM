@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('./constants.php')
 ?>
 
@@ -72,7 +73,6 @@ if (isset($_POST['submit'])) {
     $pass = $_POST['password'];
 
 
-    include('constants.php');
 
     $sql = "SELECT * FROM users WHERE email='$email' and status = '1'";
     $res = mysqli_query($conn, $sql);
@@ -83,6 +83,7 @@ if (isset($_POST['submit'])) {
         if (password_verify($pass, $pass_save)) {
             $_SESSION['login'] = "<div class='danger'>dang nhap thanh cong.</div>";
             $_SESSION['user'] = $email;
+            
             header("Location:index.php");
         } else {
             $response = 'mat khau sai';
