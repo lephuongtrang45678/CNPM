@@ -55,7 +55,7 @@ include('index.php');
                         <td><a href="delete_user.php?userid=<?php echo $row['userid']; ?>"><i class="fas fa-trash text-danger"></i></a></td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <img src="../<?php echo $row['avatar']; ?>" alt="" style=" width: 50%;" ">
+                                <img src="<?php echo $row['avatar']; ?>" alt="" style=" width: 50%;" ">
                                     </div>
 
                                 </td>

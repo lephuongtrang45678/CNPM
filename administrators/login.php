@@ -22,7 +22,7 @@ include('../constants.php')
                         unset($_SESSION['no-login']);
                     }
                     ?>
-                    <form method="POST">
+                    <form method="post">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="name" id="email" value="trang">
                             <label for="floatingInput">Tên đăng nhập </label>
@@ -61,7 +61,8 @@ include('../constants.php')
 <?php
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    $pass = $_POST['pass'];
+    
+    $pass = md5($_POST['pass']);
 
 
 
@@ -71,7 +72,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($res) > 0) {
         $row = mysqli_fetch_assoc($res);
         $pass_save = $row['pass'];
-        if (password_verify($pass, $pass_save)) {
+        if ($pass == $pass_save) {
             $_SESSION['login'] = "<div class='danger'>dang nhap thanh cong.</div>";
             $_SESSION['user'] = $name;
 

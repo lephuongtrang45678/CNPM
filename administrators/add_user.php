@@ -146,4 +146,4 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-<script type="text/javascript" src="js/edit-js.js"></script>
+<script type="text/javascript" src="../js/edit-js.js"></script>
