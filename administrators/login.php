@@ -1,6 +1,5 @@
 <?php
-session_start();
-include('./constants.php')
+include('../constants.php')
 ?>
 
 <head>
@@ -23,13 +22,13 @@ include('./constants.php')
                         unset($_SESSION['no-login']);
                     }
                     ?>
-                    <form method="POST">
+                    <form method="post">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
-                            <label for="floatingInput">Địa chỉ Email </label>
+                            <input type="text" class="form-control" name="name" id="email" value="trang">
+                            <label for="floatingInput">Tên đăng nhập </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                            <input type="password" class="form-control" name="pass"  >
                             <label for="floatingPassword">Mật khẩu</label>
                         </div>
 
@@ -53,14 +52,6 @@ include('./constants.php')
                                 <i class="fab fa-facebook-f me-2"></i> Đăng Nhập với Facebook
                             </button>
                         </div>
-                        <div class="row mb-1 px-3 mt-3">
-                            <div class="col">
-                                <small class="font-weight-bold">bạn chưa có tài khoản? </small>
-                            </div>
-                            <div class="col">
-                                <a href="register-admin.php" class="text-danger fw-bolder ">ĐĂNG KÝ</a>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -69,29 +60,30 @@ include('./constants.php')
 </div>
 <?php
 if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $pass = $_POST['password'];
+    $name = $_POST['name'];
+    
+    $pass = md5($_POST['pass']);
 
 
 
-    $sql = "SELECT * FROM users WHERE email='$email' and status = '1'";
+    $sql = "SELECT * FROM administrators WHERE name='$name' and pass = '$pass'";
     $res = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($res) > 0) {
         $row = mysqli_fetch_assoc($res);
-        $pass_save = $row['password'];
-        if (password_verify($pass, $pass_save)) {
+        $pass_save = $row['pass'];
+        if ($pass == $pass_save) {
             $_SESSION['login'] = "<div class='danger'>dang nhap thanh cong.</div>";
-            $_SESSION['user'] = $email;
-            
+            $_SESSION['user'] = $name;
+
             header("Location:index.php");
         } else {
             $response = 'mat khau sai';
-            header("Location:" . SITEURL . "login.php?response=$response");
+            header("Location:" . SITEURL . "administrators/login.php?response=$response");
         }
     } else {
         $response = "email sai";
-        header("Location:" . SITEURL . "login.php?response=$response");
+        header("Location:" . SITEURL . "administrators/login.php?response=$response");
     }
 }
 

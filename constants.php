@@ -1,8 +1,9 @@
 <?php
 
 $currency = '$'; //Currency sumbol or code
-
-
+if(!isset($_SESSION)){
+    session_start();
+}
     //Create Constants to Store Non Repeating Values
     $localhost = 'localhost';
     $username = 'root';
@@ -28,6 +29,4 @@ $currency = '$'; //Currency sumbol or code
 		$row = mysqli_fetch_assoc($result);
 		return $row['publisher_name'];
 	}
-
-
 ?>

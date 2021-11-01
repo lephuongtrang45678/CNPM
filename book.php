@@ -23,7 +23,7 @@ if (!$row) {
 ?>
 <!-- Example row of columns -->
 <div class="container">
-    <form method="post" class="mb-4" action="cart.php?id=<?= $row['book_isbn']; ?>">
+    <form method="post" class="mb-4" action="cart.php">
         <h5 class="mt-3 mb-3"><a href="books.php" class="text-decoration-none text-danger">Tất cả sách</a> > <?php echo $row['book_title']; ?></h5>
         <div class="row">
             <div class="col-md-3 text-center">
@@ -58,10 +58,8 @@ if (!$row) {
                 </table>
 
 
-                <input type="hidden" name="book_title" value="<?php echo $row['book_title']; ?>">
-                <input type="hidden" name="book_price" value="<?php echo $row['book_price']; ?>">
-                <input type="number" name="quatity" value="1" class="form-control btn mb-2 btn-outline-dark">
-                <input type="submit" value=" Thêm vào giỏ hàng" name="add_to_cart" class="form-control btn btn-outline-danger ">
+                <input type="hidden" name="bookisbn" value="<?php echo $book_isbn; ?>">
+                <input type="submit" value=" Thêm vào giỏ hàng" name="cart" class="form-control btn btn-outline-danger ">
     </form>
 
 

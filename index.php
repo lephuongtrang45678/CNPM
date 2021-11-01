@@ -12,15 +12,27 @@ include('header.php')
             <div>
                 <div class="sidemenu-box">
                     <h6 class="title">Theo dịp </h6>
-                    <ul class='sidebar-menu-new'>
-                        <li><a class="text-decoration-none text-muted" href='#'>Lễ tình nhân (49)</a></li>
-                        <li><a class="text-decoration-none text-muted" href='#'>Ngày phụ nữ (33)</a></li>
-                        <li><a class="text-decoration-none text-muted" href='#'>Sinh nhật (119)</a></li>
-                        <li><a class="text-decoration-none text-muted" href='#'>Ngày của mẹ (19)</a></li>
-                        <li><a class="text-decoration-none text-muted" href='#'>Giáng sinh (45)</a></li>
-                        <li><a class="text-decoration-none text-muted" href='#'>Tết (10)</a></li>
-                        <li><a class="text-decoration-none text-muted" href='#'>Halloween (14)</a></li>
+                    // 'distinst'
+                    <?php
+                    $query = "SELECT * FROM books ORDER BY book_Category";
+                    $result = mysqli_query($conn, $query);
+
+
+                    ?>
+                    <h6 class="title">Thể loại </h6>
+                    <ul>
+                        <?php
+                        while ($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                            <li>
+                                <a class="text-decoration-none text-muted"><?php echo $row['book_Category']; ?></a>
+                            </li>
+                        <?php } ?>
+                        <li>
+                            <a class="text-decoration-none text-danger" href=" books.php">Xem tất cả sách</a>
+                        </li>
                     </ul>
+                    
                 </div>
             </div>
             <div>
@@ -39,7 +51,7 @@ include('header.php')
                     while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                         <li>
-                            <a class="text-decoration-none text-muted" ><?php echo $row['book_author']; ?></a>
+                            <a class="text-decoration-none text-muted"><?php echo $row['book_author']; ?></a>
                         </li>
                     <?php } ?>
                     <li>
@@ -69,20 +81,6 @@ include('header.php')
                         <a class="text-decoration-none text-danger" href=" books.php">Xem tất cả sách</a>
                     </li>
                 </ul>
-            </div>
-            <div>
-                <div class="sidemenu-box">
-                    <h6 class="title">Theo độ tuổi</h6>
-
-                    <ul class='sidebar-menu-new'>
-                        <li><a href="#" class="text-decoration-none text-muted">Sách 2 - 3 tuổi (201)</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted">Sách 3 - 6 tuổi (487)</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted">Sách 6 - 9 tuổi (746)</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted">Sách 9 - 12 tuổi (779)</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted">Sách 12 - 18 tuổi (1472)</a></li>
-                        <li><a href="#" class="text-decoration-none text-muted">Sách > 18 tuổi (1847)</a></li>
-                    </ul>
-                </div>
             </div>
             <div>
                 <div class="sidemenu-box">

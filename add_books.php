@@ -1,7 +1,8 @@
 <?php
+ob_start();
 include("header.php");
 ?>
-session_start();
+
 <div class="container-fluid">
     <div class="row mt-5">
         <div class="col d-flex"><a href="index.php"><i class="fas fa-chevron-left "></i></a>
@@ -22,7 +23,7 @@ session_start();
     ?>
     <div class="row">
         <div class="col border p-3 rounded-2 mt-3">
-            <form method="POST" class="row g-3 " enctype="multipart/form-data" action="admin/request_books.php">
+            <form method="POST" class="row g-3 " enctype="multipart/form-data">
                 <div class="col-md-12">
                     <label for="book_title" class="form-label">Tên sách</label>
                     <input type="text" name="book_title" class="form-control" id="book_title" placeholder="Mắt biếc">
@@ -37,11 +38,14 @@ session_start();
                 </div>
 
                 <div class="col">
-                    <label for="book_image" class="form-label">Ảnh bìa sách <small>(Nếu bạn có)</small></label>
-                    <div class="mb-3">
-                        <img src="<?php echo $row['book_image']; ?>" alt="" style="width : 10%">
+                    <label for="avatar" class="form-label">Thêm ảnh</label>
+                    <input type="file" id="fileToUpload" name="fileToUpload" class=" mb-3 form-control" value="chọn ảnh">
+                    <div class="preview mb-3">
+                        <div id="preview">
+                            <img src="#" hidden />
+                        </div>
+                        <div id="err"></div>
                     </div>
-                    <input type="file" name="fileToUpload" id="fileToUpload" class=" mb-3 form-control" value="chọn ảnh">
                 </div>
                 <div class="col-12 d-flex justify-content-center">
                     <button type="submit" name="submit" class="btn btn-outline-danger ">
@@ -110,8 +114,8 @@ if (isset($_POST['submit'])) {
     // update
     require('constants.php');
     //2. SQL Query to Save the data into database
-    $sql = "INSERT INTO books_add(book_isbn, book_title, book_author, book_image, book_descr, book_price, publisherid) 
-    VALUES (NULL,'$book_title','$book_author','$target_file','$book_descr','','')";
+    $sql = "INSERT INTO books_add(book_title, book_author, book_image, book_descr) 
+    VALUES ('$book_title','$book_author','$target_file','$book_descr')";
 
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);
@@ -122,36 +126,16 @@ if (isset($_POST['submit'])) {
 
         //Create a Session Variable to Display Message
         $_SESSION['add'] = "<div class='danger'>thêm thành công</div>";
-        // header("location: admin/request_books.php");
+        // header("location: add_book_table.php");
+        header("Location:add_book_table.php");
+
     } else {
 
         $_SESSION['add'] = "<div class='error'>không hợp lệ</div>";
         //Redirect Page to Add Admin
-        // header("location: add-books.php");
+        header("location: add_books.php");
     }
 }
 ?>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <?php
 
-                $sql = "SELECT * FROM books_add  ";
-                $res = mysqli_query($conn, $sql);
-
-                while ($row = mysqli_fetch_array($res)) { ?>
-
-                    <div class="col-3">
-                        <a href="#">
-                            <img src="./img/img-index/<?= $row['book_image']; ?>" alt="" class="img-responsive img-thumbnail">
-                            <input type="hidden" name="bookname" value="<?= $row['book_title'] ?>">
-                            <input type="hidden" name="bookprice" value="<?= $row['book_price'] ?>">
-                        </a>
-                    </div>
-                <?php }
-                ?>
-            </div>
-        </div>
-    </div>
-</div>
+<script type="text/javascript" src="js/edit-js.js"></script>

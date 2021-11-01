@@ -1,5 +1,5 @@
 <?php
-include('./constants.php')
+include('constants.php')
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,6 @@ include('./constants.php')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link href="style/style.css" rel="stylesheet" type="text/css">
     <title>Mua Sách Mới, Sách Hot, Sách Hay Nên Đọc Online</title>
-    <link rel="stylesheet" href="./main.css" class="">
 </head>
 
 <body>
@@ -38,12 +37,21 @@ include('./constants.php')
             <li class="nav-item">
                 <a href="cart.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-box-open"></i> Kiểm tra đơn hàng</a></a>
             </li>
-            <li class="nav-item">
-                <a href="./register.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-user-plus"></i> Đăng Ký</a></a>
-            </li>
-            <li class="nav-item">
-                <a href="./login.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng nhập </a></a>
-            </li>
+
+            <?php
+            if (isset($_SESSION['user'])) { ?>
+                <li class="nav-item">
+                    <a href="./logout.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng Xuất </a></a>
+                </li>
+            <?php } else { ?>
+                <li class="nav-item">
+                    <a href="./register.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-user-plus"></i> Đăng Ký</a></a>
+                </li>
+                <li class="nav-item">
+                    <a href="./login.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng nhập </a></a>
+                </li>
+            <?php }
+            ?>
         </ul>
     </div>
     <div class="container-fluid mt-4 mb-4">
@@ -54,7 +62,7 @@ include('./constants.php')
             <div class="col-5">
 
 
-                <form action="<?php echo SITEURL; ?>search.php" method="POST" class="d-flex boder">
+                <form action="search.php" method="POST" class="d-flex boder">
                     <select class="form-select w-25 me-2" aria-label="">
                         <option selected>Tất cả</option>
                         <option value="1">Sách - Truyện tranh</option>
