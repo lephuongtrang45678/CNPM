@@ -1,11 +1,6 @@
 <?php
-	session_start();
-	require_once "./functions/admin.php";
-	$title = "Add new book";
-	require "./template/header.php";
-	require "./functions/database_functions.php";
-	$conn = db_connect();
-
+	//include("./connect_book.php");
+	include("header.php");
 	if(isset($_POST['add'])){
 		$isbn = trim($_POST['isbn']);
 		$isbn = mysqli_real_escape_string($conn, $isbn);
@@ -25,7 +20,7 @@
 		$publisher = trim($_POST['publisher']);
 		$publisher = mysqli_real_escape_string($conn, $publisher);
 
-		// add image
+		// thêm ảnh
 		if(isset($_FILES['image']) && $_FILES['image']['name'] != ""){
 			$image = $_FILES['image']['name'];
 			$directory_self = str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['PHP_SELF']);
@@ -34,12 +29,12 @@
 			move_uploaded_file($_FILES['image']['tmp_name'], $uploadDirectory);
 		}
 
-		// find publisher and return pubid
-		// if publisher is not in db, create new
+		// nhà xuất bản  và  trả về 
+		// if publisher không có trong db, tạo mới
 		$findPub = "SELECT * FROM publisher WHERE publisher_name = '$publisher'";
 		$findResult = mysqli_query($conn, $findPub);
 		if(!$findResult){
-			// insert into publisher table and return id
+			// chèn vào bảng nhà xuất bản và trả về id
 			$insertPub = "INSERT INTO publisher(publisher_name) VALUES ('$publisher')";
 			$insertResult = mysqli_query($conn, $insertPub);
 			if(!$insertResult){
@@ -62,42 +57,42 @@
 		}
 	}
 ?>
-	<form method="post" action="admin_add.php" enctype="multipart/form-data">
+	<form method="post" action="admin_book.php" enctype="multipart/form-data">
 		<table class="table">
 			<tr>
-				<th>ISBN</th>
+				<th>Mã vạch</th>
 				<td><input type="text" name="isbn"></td>
 			</tr>
 			<tr>
-				<th>Title</th>
+				<th>Tiêu đề</th>
 				<td><input type="text" name="title" required></td>
 			</tr>
 			<tr>
-				<th>Author</th>
+				<th>Tác Giả</th>
 				<td><input type="text" name="author" required></td>
 			</tr>
 			<tr>
-				<th>Image</th>
+				<th>Hình ảnh</th>
 				<td><input type="file" name="image"></td>
 			</tr>
 			<tr>
-				<th>Description</th>
+				<th>Miêu tả về sách</th>
 				<td><textarea name="descr" cols="40" rows="5"></textarea></td>
 			</tr>
 			<tr>
-				<th>Price</th>
+				<th>Giá bán</th>
 				<td><input type="text" name="price" required></td>
 			</tr>
 			<tr>
-				<th>Publisher</th>
+				<th>Nhà sản xuất</th>
 				<td><input type="text" name="publisher" required></td>
 			</tr>
 		</table>
-		<input type="submit" name="add" value="Add new book" class="btn btn-primary">
+		<input type="submit" name="add" value="Thêm sách mới" class="btn btn-primary">
 		<input type="reset" value="cancel" class="btn btn-default">
 	</form>
 	<br/>
 <?php
 	if(isset($conn)) {mysqli_close($conn);}
-	require_once "./template/footer.php";
+	include("footer.php");
 ?>

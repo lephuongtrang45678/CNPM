@@ -81,3 +81,7 @@ button[type="button"]:hover{
 .admin{
     margin: 64px;
 }
+.admin_book{
+    box-sizing: border-box;
+    text-decoration: none;
+}

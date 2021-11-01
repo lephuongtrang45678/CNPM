@@ -1,42 +1,57 @@
 <?php
-	session_start();
-	include("./connect_book.php");
-	$title = "List book";
-	include("./template/header.php");
-	include("./database.php");
-	$conn = db_connect();
-	$result = getAll($conn);
+include("./header.php");
 ?>
-	<p class="lead"><a href="admin_add_book.php">Add new book</a></p>
-	<a href="admin_signout.php" class="btn btn-primary">Sign out!</a>
-	<table class="table" style="margin-top: 20px">
-		<tr>
-			<th>ISBN</th>
-			<th>Title</th>
-			<th>Author</th>
-			<th>Image</th>
-			<th>Description</th>
-			<th>Price</th>
-			<th>Publisher</th>
-			<th>&nbsp;</th>
-			<th>&nbsp;</th>
-		</tr>
-		<?php while($row = mysqli_fetch_assoc($result)){ ?>
-		<tr>
-			<td><?php echo $row['book_isbn']; ?></td>
-			<td><?php echo $row['book_title']; ?></td>
-			<td><?php echo $row['book_author']; ?></td>
-			<td><?php echo $row['book_image']; ?></td>
-			<td><?php echo $row['book_descr']; ?></td>
-			<td><?php echo $row['book_price']; ?></td>
-			<td><?php echo getPubName($conn, $row['publisherid']); ?></td>
-			<td><a href="admin_edit.php?bookisbn=<?php echo $row['book_isbn']; ?>">Edit</a></td>
-			<td><a href="admin_delete.php?bookisbn=<?php echo $row['book_isbn']; ?>">Delete</a></td>
-		</tr>
-		<?php } ?>
-	</table>
+	<p class="lead"><a href="admin_add_book.php">Thêm sách mới</a></p>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Mã vạch</th>
+				<th>Tiêu đề</th>
+				<th>Tác giả</th>
+				<th>Hình ảnh</th>
+				<th>Miêu tả về sách</th>
+				<th>Giá bán</th>
+				<th>Nhà sản xuất</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			$sql = "SELECT * FROM books";
+			$result = mysqli_query($conn, $sql);
 
-<?php
-	if(isset($conn)) {mysqli_close($conn);}
-	require_once "./template/footer.php";
-?>
+			//bước 3 xử lý kết quả trả về
+			if (mysqli_num_rows($result) > 0) {
+				$i = 1;
+				while ($row = mysqli_fetch_assoc($result)) {
+			?>
+
+					<tr>
+						<td><?php echo $row['book_isbn']; ?></td>
+						<td><?php echo $row['book_title']; ?></td>
+						<td><?php echo $row['book_author']; ?></td>
+						<td>
+							<div>
+								<img src="./img/<?php echo $row['book_image']; ?>" alt="">
+							</div>
+						</td>
+						<td><?php echo $row['book_descr']; ?></td>
+						<td><?php echo $row['book_price']; ?></td>
+						<td><?php echo getPubName($conn, $row['publisherid']); ?></td>
+						<td><a href="admin_edit.php?bookisbn=<?php echo $row['book_isbn']; ?>">Sửa</a></td>
+						<td><a href="admin_delete.php?bookisbn=<?php echo $row['book_isbn']; ?>">Xóa</a></td>
+					</tr>
+			<?php
+					$i++;
+				}
+			}
+			?>
+		</tbody>
+	</table>
+	<?php
+	if (isset($conn)) {
+		mysqli_close($conn);
+	}
+	require_once "footer.php";
+	?>

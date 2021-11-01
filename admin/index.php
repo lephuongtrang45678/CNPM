@@ -1,17 +1,17 @@
 <?php
-  session_start();
+include("./check_login.php");
+include ("header.php");
   $count = 0;
-  // connecto database
-  
-  $title = "Index";
-  include ("./template/header.php");
-
 ?>
     <?php
+    if (isset($_SESSION['login'])) {
+        echo $_SESSION['login'];
+        unset($_SESSION['login']);
+    }
       if(isset($title) && $title == "Index") {
     ?>
     <?php } ?>
-      <!-- Example row of columns -->
+      <!-- hàng cột -->
       <p class="lead text-center text-muted">Sách mới nhất</p>
       <div class="row">
                     <div class="col-md-2">
@@ -49,5 +49,5 @@
 
 <?php
   if(isset($conn)) {mysqli_close($conn);}
-  include ("./template/footer.php");
+  include ("footer.php");
 ?>

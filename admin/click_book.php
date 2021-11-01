@@ -1,10 +1,7 @@
 <?php
   session_start();
   $book_isbn = $_GET['bookstory'];
-  // connecto database
-  include("./database.php");
-  $conn = db_connect();
-
+  // kết nối cơ sở dữ liệu
   $query = "SELECT * FROM books WHERE book_isbn = '$book_isbn'";
   $result = mysqli_query($conn, $query);
   if(!$result){
@@ -19,18 +16,18 @@
   }
 
   $title = $row['book_title'];
-  require "./template/header.php";
+  require "header.php";
 ?>
-      <!-- Example row of columns -->
-      <p class="lead" style="margin: 25px 0"><a href="books.php">Books</a> > <?php echo $row['book_title']; ?></p>
+      <!-- ví dụ hàng cột -->
+      <p class="lead" style="margin: 25px 0"><a href="books.php">Sách</a> > <?php echo $row['book_title']; ?></p>
       <div class="row">
         <div class="col-md-3 text-center">
           <img class="img-responsive img-thumbnail" src="./bootstrap/img/<?php echo $row['book_image']; ?>">
         </div>
         <div class="col-md-6">
-          <h4>Book Description</h4>
+          <h4>Miêu tả về sách</h4>
           <p><?php echo $row['book_descr']; ?></p>
-          <h4>Book Details</h4>
+          <h4>Chi tiết sách</h4>
           <table class="table">
           	<?php foreach($row as $key => $value){
               if($key == "book_descr" || $key == "book_image" || $key == "publisherid" || $key == "book_title"){
@@ -67,5 +64,5 @@
        	</div>
       </div>
 <?php
-  require "./template/footer.php";
+  require "footer.php";
 ?>

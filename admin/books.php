@@ -1,6 +1,7 @@
 <?php
+include("header.php");
 $title = "Full Catalogs of Books";
-  require_once "./template/header.php";
+  
 ?>
   <p class="lead text-center text-muted">Danh mục đầy đủ sách</p>
   <div class="row">
@@ -49,5 +50,5 @@ $title = "Full Catalogs of Books";
        </div>
 <?php
   if(isset($conn)) { mysqli_close($conn); }
-  include( "./template/footer.php");
+  include( "footer.php");
 ?>
