@@ -202,7 +202,7 @@ if (isset($_POST['submit'])) {
                 $tieude = 'Xác nhận tài khoản';
                 $mail->Subject = $tieude;
                 // gui ve thong bao                   
-                $linkemail = "http://localhost/buy_book/active_user.php?email=" . $email . "&code=" . $code;
+                $linkemail = "http://localhost/PROJECT/active_user.php?email=" . $email . "&code=" . $code;
                 // Mail body content 
                 $bodyContent .= '<p><b>Hãy xác nhận email đăng ký tài khoảng </b></p>';
                 $bodyContent .= '<a href=' . $linkemail . '>Kích hoạt</a>';

@@ -58,7 +58,7 @@ include('./constants.php')
                                 <small class="font-weight-bold">bạn chưa có tài khoản? </small>
                             </div>
                             <div class="col">
-                                <a href="register-admin.php" class="text-danger fw-bolder ">ĐĂNG KÝ</a>
+                                <a href="register.php" class="text-danger fw-bolder ">ĐĂNG KÝ</a>
                             </div>
                         </div>
                     </form>
@@ -83,6 +83,8 @@ if (isset($_POST['submit'])) {
         if (password_verify($pass, $pass_save)) {
             $_SESSION['login'] = "<div class='danger'>dang nhap thanh cong.</div>";
             $_SESSION['user'] = $email;
+            $_SESSION['userid'] = $row['userid'];
+
             
             header("Location:index.php");
         } else {

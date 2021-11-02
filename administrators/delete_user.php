@@ -3,7 +3,7 @@
     //Include constants.php file here
     include('../constants.php');
 
-    // 1. get the manv of dbnhanvien to be deleted
+    // 1. get the userid of users to be deleted
     $userid = $_GET['userid'];
 
     //2. Create SQL Query to Delete 
@@ -16,10 +16,10 @@
     if($res==true)
     {
        $_SESSION['delete'] = "<div class='danger'>xoa thanh cong.</div>";
-        header('location:'.SITEURL.'danhba_user.php');
+        header('location:danhba_user.php');
     }
     else
     {
         $_SESSION['delete'] = "<div class='error'>xoa that bai.</div>";
-        header('location:'.SITEURL.'danhba_user.php');
+        header('location:danhba_user.php');
     }

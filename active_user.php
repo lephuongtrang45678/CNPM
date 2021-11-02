@@ -15,9 +15,9 @@ if (mysqli_num_rows($res1)) {
     if ($res) {
         // đã kích hoạt
         echo "Tài khoản của bạn đã được kích hoạt";
-        header("location:" . $siteurl . 'login.php');
+        header("location:" . $SITEURL . 'login.php');
     }
 } else {
     echo "Lỗi khi kích hoạt tài khoản. Hãy thử lại.</p>";
-    header("location:" . $siteurl . 'register.php');
+    header("location:" . $SITEURL . 'register.php');
 }

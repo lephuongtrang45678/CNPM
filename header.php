@@ -1,5 +1,6 @@
 <?php
-include('constants.php')
+include('constants.php');
+ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@ include('constants.php')
                 <a class="nav-link text-decoration-none text-muted  href=" #"><i class="fas fa-gift"></i> Ưu đãi & tiện ích</a></a>
             </li>
             <li class="nav-item">
-                <a href="cart.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-box-open"></i> Kiểm tra đơn hàng</a></a>
+                <a href="check_cart.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-box-open"></i> Kiểm tra đơn hàng</a></a>
             </li>
 
             <?php
