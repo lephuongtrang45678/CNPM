@@ -1,86 +1,167 @@
 <?php
-	//include("./connect_book.php");
-	include("header.php");
-	if(isset($_POST['add'])){
-		$isbn = $_POST['isbn'];
-		$title = $_POST['title'];
-		$author = $_POST['author'];
-		$descr = $_POST['descr'];
-		$price = $_POST['price'];
-		$publisher = $_POST['publisher'];
-		$target_dir = "img/";
-		$target_file = $target_dir . basename($_FILES["image"]["name"]);
-		$uploadOk = 1;
-		$image = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-			echo "Tệp " . htmlspecialchars(basename($_FILES["image"]["name"])) . " đã thành công.";
-		} else {
-			echo "Xin lỗi, đã có lỗi tải lên tệp của bạn.";
-		}
-		// nhà xuất bản  và  trả về 
-		// if publisher không có trong db, tạo mới
-		$findPub = "SELECT * FROM publisher WHERE publisher_name = '$publisher'";
-		$findResult = mysqli_query($conn, $findPub);
-		if(!$findResult){
-			// chèn vào bảng nhà xuất bản và trả về id
-			$insertPub = "INSERT INTO publisher(publisher_name) VALUES ('$publisher')";
-			$insertResult = mysqli_query($conn, $insertPub);
-			if(!$insertResult){
-				echo "Can't add new publisher " . mysqli_error($conn);
-				exit;
-			}
-		} else {
-			$row = mysqli_fetch_assoc($findResult);
-			$publisherid = $row['publisherid'];
-		}
-
-
-		$query = "INSERT INTO books VALUES ('" . $isbn . "', '" . $title . "', '" . $author . "', '" . $image . "', '" . $descr . "', '" . $price . "', '" . $publisherid . "')";
-		$result = mysqli_query($conn, $query);
-		if(!$result){
-			echo "Can't add new data " . mysqli_error($conn);
-			exit;
-		} else {
-			header("Location: admin_book.php");
-		}
-	}
+include("./header.php");
 ?>
-	<form method="post" action="admin_add_book.php" enctype="multipart/form-data">
-		<table class="table">
-			<tr>
-				<th>Mã vạch</th>
-				<td><input type="text" name="isbn"></td>
-			</tr>
-			<tr>
-				<th>Tiêu đề</th>
-				<td><input type="text" name="title" required></td>
-			</tr>
-			<tr>
-				<th>Tác Giả</th>
-				<td><input type="text" name="author" required></td>
-			</tr>
-			<tr>
-				<th>Hình ảnh</th>
-				<td><input type="file" name="image"></td>
-			</tr>
-			<tr>
-				<th>Miêu tả về sách</th>
-				<td><textarea name="descr" cols="40" rows="5"></textarea></td>
-			</tr>
-			<tr>
-				<th>Giá bán</th>
-				<td><input type="text" name="price" required></td>
-			</tr>
-			<tr>
-				<th>Nhà sản xuất</th>
-				<td><input type="text" name="publisher" required></td>
-			</tr>
-		</table>
-		<input type="submit" name="add" value="Thêm sách mới" class="btn btn-primary">
-		<input type="reset" value="cancel" class="btn btn-default">
-	</form>
-	<br/>
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col d-flex"><a href="admin_book.php"><i class="fas fa-chevron-left "></i></a>
+            <h4 class="ms-2">Trở lại trang chủ</h4>
+        </div>
+        <div class="col text-end"><a href="./admin_book.php"><button class="btn btn-outline-danger" type="submit">Hủy</button></a></div>
+    </div>
+    <?php
+
+    if (isset($_SESSION['add'])) //Checking whether the SEssion is Set of Not
+    {
+        echo $_SESSION['add']; //Display the SEssion Message if SEt
+        unset($_SESSION['add']); //Remove Session Message
+    }
+
+
+    ?>
+    <div class="row">
+        <div class="col border p-3 rounded-2 mt-3">
+            <form method="POST" class="row g-3 " enctype="multipart/form-data">
+                <div class="col-md-4">
+                    <label for="book_isbn" class="form-label"></label>
+                    <input type="" name="book_isbn" class="form-control" id="book_isbn" placeholder="978-0-321-94786-4">
+                    <div class="text-muted"><small>Mã vạch</small></div>
+                </div>
+                <div class="col-md-4">
+                    <label for="book_title" class="form-label">Tiêu đề</label>
+                    <input type="" name="book_title" class="form-control" id="book_title" placeholder="Tự Động Hóa PLC S7-1200 Với Tia Portal">
+                </div>
+                <div class="col-md-4">
+                    <label for="book_author" class="form-label">Tác giả</label>
+                    <input type="" name="book_author" class="form-control" id="book_author" placeholder="Trần Văn Hiếu">
+                </div>
+				<div class="col-md-4">
+                    <label for="book_image" class="form-label">Hình ảnh</label>
+                    <div class="mb-3">
+                        <img src="<?php echo $row['book_image']; ?>" alt="" style="width : 10%">
+                    </div>
+                    <input type="file" name="fileToUpload" id="fileToUpload" class=" mb-3 form-control" value="chọn ảnh">
+                </div>
+                <div class="col-md-4">
+                    <label for="book_Category" class="form-label">Chủ đề</label>
+                    <input type="tel" name="book_Category" class="form-control" id="book_Category" placeholder="Vừa học vừa chơi">
+                </div>
+                <div class="col-md-4">
+                    <label for="book_descr" class="form-label">Miêu tả về sách</label>
+                    <input type="book_descr" name="book_descr" class="form-control" id="book_descr" placeholder="Tự Động Hóa PLC S7-1200 ">
+                </div>
+				<div class="col-md-4">
+                    <label for="book_price" class="form-label">Giá bán</label>
+                    <input type="book_price" name="book_price" class="form-control" id="book_price" placeholder="1200">
+                </div>
+				<div class="col-md-4">
+                    <label for="publisherid" class="form-label">Nhà sản xuất</label>
+                    <input type="publisherid" name="publisherid" class="form-control" id="publisherid" placeholder="Wrox">
+                </div>
+                        <?php
+                        require("../constants.php");
+                        $sql = "SELECT * FROM books";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<option value ="' . $row['book_isbn'] . '">' . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <button type="submit" name="submit" class="btn btn-outline-danger ">
+                        <h5>Thêm</h5x>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?php
-	if(isset($conn)) {mysqli_close($conn);}
-	include("footer.php");
+include("./footer.php");
+
+
+
+//Process the Value from Form and Save it in Database
+
+//Check whether the submit button is clicked or not
+
+if (isset($_POST['submit'])) {
+
+
+    //echo "CLicked";
+
+    //1. Get the DAta from Form
+    $book_isbn = $_POST['book_isbn'];
+    $book_title = $_POST['book_title'];
+    $book_author = $_POST['book_author'];
+    $book_Category = $_POST['book_Category'];
+    $book_descr = $_POST['book_descr'];
+    $book_price = $_POST['book_price'];
+	$publisherid = $_POST['publisherid'];
+    $target_dir = "upload/upload-img/"; //chỉ định thư mục nơi tệp sẽ được đặt
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
+    $uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
+
+    // Kiểm tra xem tệp đã tồn tại chưa
+    if (file_exists($target_file)) {
+        echo "Xin lỗi, ảnh bạn đã tồn tại.";
+        $uploadOk = 0;
+    }
+
+    // kiểm tra kích cỡ ảnh
+    if (
+        $_FILES["fileToUpload"]["size"] > 500000
+    ) {
+        echo "Xin lỗi,cỡ ảnh bạn quá lớn.";
+        $uploadOk = 0;
+    }
+
+    // cho phép các dạng form ảnh
+    if (
+        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif"
+    ) {
+        echo " Xin lỗi, chỉ có tệp JPG, JPG, PNG & GIF được phép.";
+        $uploadOk = 0;
+    }
+
+    // kiểm tra nếu $uploadOk = 0
+    if ($uploadOk == 0) {
+        echo "Xin lỗi, tập tin của bạn đã không được tải lên.";
+        // Hoàn thành tải lên tập tin PHP Script
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "Tệp " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " đã thành công.";
+        } else {
+            echo "Xin lỗi, đã có lỗi tải lên tệp của bạn.";
+        }
+    }
+    // echo $avatar;
+    // update
+    require('../constants.php');
+    //2. SQL Query to Save the data into database
+    $sql = "INSERT INTO book_add(book_title, book_author, book_image, book_descr) 
+        VALUES (NULL,'$book_isbn','$book_title',NULL,'$book_author','$book_Category','$book_descr', '$book_price','$publisherid','$target_file')";
+    //3. Executing Query and Saving Data into Datbase
+    $res = mysqli_query($conn, $sql);
+
+    //4. Check whether the (Query is Executed) data is inserted or not and display appropriate message
+    if ($res == TRUE) {
+        //Data Inserted
+
+        //Create a Session Variable to Display Message
+        $_SESSION['add'] = "<div class='danger'>thêm thành công</div>";
+        header("location: admin_book.php");
+    } else {
+
+        $_SESSION['add'] = "<div class='error'>không hợp lệ</div>";
+        //Redirect Page to Add Admin
+        header("location: add_book.php");
+    }
+}
+
 ?>
