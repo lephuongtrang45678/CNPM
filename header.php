@@ -33,7 +33,7 @@ ob_start();
         </ul>
         <ul class="nav ">
             <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted  href=" #"><i class="fas fa-gift"></i> Ưu đãi & tiện ích</a></a>
+                <a class="nav-link text-decoration-none text-muted  href=" ./add_book_table.php"><i class="fas fa-book-medical"></i></i></i>  Sách Chưa có</a></a>
             </li>
             <li class="nav-item">
                 <a href="check_cart.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-box-open"></i> Kiểm tra đơn hàng</a></a>

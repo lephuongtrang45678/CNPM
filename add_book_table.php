@@ -4,6 +4,11 @@ include('./header.php');
 <div class="container">
     <div class="row">
         <div class="col-12">
+            <a href="add_books.php">
+                <input type="submit" value="Thêm" class="btn btn-outline-danger">
+            </a>
+        </div>
+        <div class="col-12">
             <div class="row">
                 <?php
 
@@ -29,11 +34,6 @@ include('./header.php');
                                 <td><?= $row['book_image'] ?></td>
                             </tr>
                         </tbody>
-                        <?php
-                        if (isset($conn)) {
-                            mysqli_close($conn);
-                        }
-                        ?>
                     </table>
                 <?php }
                 ?>

@@ -32,7 +32,7 @@ include('header.php')
                             <a class="text-decoration-none text-danger" href=" books.php">Xem tất cả sách</a>
                         </li>
                     </ul>
-                    
+
                 </div>
             </div>
             <div>
@@ -176,12 +176,17 @@ include('header.php')
 
                                 while ($row = mysqli_fetch_array($res)) { ?>
 
-                                    <div class="col-3">
-                                        <a href="book.php?bookisbn=<?= $row['book_isbn'] ?>">
-                                            <img src="./img/img-index/<?= $row['book_image']; ?>" alt="" class="img-responsive img-thumbnail">
-                                            <input type="hidden" name="bookname" value="<?= $row['book_title'] ?>">
-                                            <input type="hidden" name="bookprice" value="<?= $row['book_price'] ?>">
+
+                                    <div class="col-md-3 mb-5 text-center">
+                                        <a href="book.php?bookisbn=<?php echo $row['book_isbn']; ?>" class="text-decoration-none text-dark">
+                                            <div class="card">
+                                                <img src="./img/img-index/<?php echo $row['book_image']; ?>" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?php echo $row['book_title'] ?></h5>
+                                                </div>
+                                            </div>
                                         </a>
+
                                     </div>
                                 <?php }
                                 ?>
