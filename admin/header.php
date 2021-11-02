@@ -2,13 +2,11 @@
 include("../constants.php");
 ?>
 <?php
-if (isset($_SESSION['login'])) {
-    echo $_SESSION['login'];
-    unset($_SESSION['login']);
+if(!isset($_SESSION['login'])){
+    header("Location:admin.php");
 }
-if (isset($title) && $title == "Index") {
+
 ?>
-<?php } ?>
 <!DOCTYPE html>
 <html lang="en">
 

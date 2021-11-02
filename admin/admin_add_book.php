@@ -2,33 +2,21 @@
 	//include("./connect_book.php");
 	include("header.php");
 	if(isset($_POST['add'])){
-		$isbn = trim($_POST['isbn']);
-		$isbn = mysqli_real_escape_string($conn, $isbn);
-		
-		$title = trim($_POST['title']);
-		$title = mysqli_real_escape_string($conn, $title);
-
-		$author = trim($_POST['author']);
-		$author = mysqli_real_escape_string($conn, $author);
-		
-		$descr = trim($_POST['descr']);
-		$descr = mysqli_real_escape_string($conn, $descr);
-		
-		$price = floatval(trim($_POST['price']));
-		$price = mysqli_real_escape_string($conn, $price);
-		
-		$publisher = trim($_POST['publisher']);
-		$publisher = mysqli_real_escape_string($conn, $publisher);
-
-		// thêm ảnh
-		if(isset($_FILES['image']) && $_FILES['image']['name'] != ""){
-			$image = $_FILES['image']['name'];
-			$directory_self = str_replace(basename($_SERVER['PHP_SELF']), '', $_SERVER['PHP_SELF']);
-			$uploadDirectory = $_SERVER['DOCUMENT_ROOT'] . $directory_self . "bootstrap/img/";
-			$uploadDirectory .= $image;
-			move_uploaded_file($_FILES['image']['tmp_name'], $uploadDirectory);
+		$isbn = $_POST['isbn'];
+		$title = $_POST['title'];
+		$author = $_POST['author'];
+		$descr = $_POST['descr'];
+		$price = $_POST['price'];
+		$publisher = $_POST['publisher'];
+		$target_dir = "img/";
+		$target_file = $target_dir . basename($_FILES["image"]["name"]);
+		$uploadOk = 1;
+		$image = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+			echo "Tệp " . htmlspecialchars(basename($_FILES["image"]["name"])) . " đã thành công.";
+		} else {
+			echo "Xin lỗi, đã có lỗi tải lên tệp của bạn.";
 		}
-
 		// nhà xuất bản  và  trả về 
 		// if publisher không có trong db, tạo mới
 		$findPub = "SELECT * FROM publisher WHERE publisher_name = '$publisher'";
@@ -57,7 +45,7 @@
 		}
 	}
 ?>
-	<form method="post" action="admin_book.php" enctype="multipart/form-data">
+	<form method="post" action="admin_add_book.php" enctype="multipart/form-data">
 		<table class="table">
 			<tr>
 				<th>Mã vạch</th>

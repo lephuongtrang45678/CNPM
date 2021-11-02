@@ -55,7 +55,7 @@ $title = "Administration section";
 
             if($pass==$passTrue){
                 header("Location:admin_book.php");
-                $_SESSION['success'] = $user_name;
+                $_SESSION['login'] = $user_name;
             }
             else{
                 echo 'Mật khẩu không chính xác';
