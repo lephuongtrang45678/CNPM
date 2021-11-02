@@ -9,6 +9,7 @@ include("./header.php");
 				<th>Tiêu đề</th>
 				<th>Tác giả</th>
 				<th>Hình ảnh</th>
+				<th>Chủ Đề</th>
 				<th>Miêu tả về sách</th>
 				<th>Giá bán</th>
 				<th>Nhà sản xuất</th>
@@ -26,7 +27,6 @@ include("./header.php");
 				$i = 1;
 				while ($row = mysqli_fetch_assoc($result)) {
 			?>
-
 					<tr>
 						<td><?php echo $row['book_isbn']; ?></td>
 						<td><?php echo $row['book_title']; ?></td>
@@ -36,9 +36,10 @@ include("./header.php");
 								<img src="./img/<?php echo $row['book_image']; ?>" alt="">
 							</div>
 						</td>
+						<td><?php echo $row['book_Category']; ?></td>
 						<td><?php echo $row['book_descr']; ?></td>
 						<td><?php echo $row['book_price']; ?></td>
-						<td><?php echo getPubName($conn, $row['publisherid']); ?></td>
+						<td><?php echo $row['publisherid']; ?></td>
 						<td><a href="admin_edit.php?bookisbn=<?php echo $row['book_isbn']; ?>">Sửa</a></td>
 						<td><a href="admin_delete.php?bookisbn=<?php echo $row['book_isbn']; ?>">Xóa</a></td>
 					</tr>
