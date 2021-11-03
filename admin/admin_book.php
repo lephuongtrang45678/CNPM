@@ -33,7 +33,7 @@ include("./header.php");
 						<td><?php echo $row['book_author']; ?></td>
 						<td>
 							<div>
-								<img src="./img/<?php echo $row['book_image']; ?>" alt="">
+								<img src="../<?php echo $row['book_image']; ?>" alt="">
 							</div>
 						</td>
 						<td><?php echo $row['book_Category']; ?></td>
