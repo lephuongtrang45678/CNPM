@@ -92,7 +92,11 @@ if (isset($_POST['submit'])) {
     $publisherid = $_POST['publisherid'];
 
 
+<<<<<<< HEAD
     $target_dir = "../img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
+=======
+    $target_dir = "img/"; //chỉ định thư mục nơi tệp sẽ được đặt
+>>>>>>> f8b37ea0dce1ea70b645cb2d51a170126d6dda82
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
     $uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
@@ -131,7 +135,11 @@ if (isset($_POST['submit'])) {
     // echo $avatar;
     // update
     //2. SQL Query to Save the data into database
+<<<<<<< HEAD
     $sql = "INSERT INTO `books`(`book_isbn`, `book_title`, `book_author`, `book_image`, `book_Category`, `book_descr`, `book_price`, `publisherid`) 
+=======
+    $sql = "INSERT INTO books`(book_isbn`, book_title, book_author, book_image, book_Category, book_descr, book_price, publisherid) 
+>>>>>>> f8b37ea0dce1ea70b645cb2d51a170126d6dda82
     VALUES ('$book_isbn','$book_title','$book_author','$target_dir','$book_Category','$book_descr','$book_price','$publisherid')";
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);

@@ -42,7 +42,7 @@ if(!isset($_SESSION['login'])){
                             <a class="nav-link" href="books.php"><i class="fad fa-books"></i>Sách</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.php"><i class="fal fa-phone-rotary"></i>Phản hồi</a>
+                            <a class="nav-link" href="reply.php"><i class="fal fa-phone-rotary"></i>Phản hồi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="mycart.php"><i class="fas fa-cart-plus"></i>Giỏ hàng</a>
