@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+ob_start();
 ?>
 
 <div class="container-fluid">
@@ -131,13 +132,14 @@ include("header.php");
 		}
 		// echo $avatar;
 		// update
-		echo $sql = "SELECT * FROM books WHERE book_isbn=$book_isbn ";
+		echo $sql = "SELECT * FROM books WHERE book_isbn='$book_isbn' ";
 		$res = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($res) > 0) {
-			echo "a";
-			echo $sql2 = "UPDATE books SET book_isbn='$book_isbn',book_title='$book_title',book_author='$book_author',book_image='$target_dir',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' ";
+			$sql2 = "UPDATE books SET book_isbn='$book_isbn',book_title='$book_title',book_author='$book_author',book_image='$target_dir',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' ";
 			$res2 = mysqli_query($conn, $sql2);
 			if ($res2 == true) {
+				echo "ok";
+
 				//Display Succes Message
 				//REdirect to Manage Admin Page with Success Message
 				$_SESSION['edit'] = "<div class='success'> Changed Successfully. </div>";
