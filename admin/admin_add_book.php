@@ -1,5 +1,6 @@
 <?php
 include("./header.php");
+ob_start();
 ?>
 
 <div class="container-fluid">
@@ -24,51 +25,39 @@ include("./header.php");
             <form method="POST" class="row g-3 " enctype="multipart/form-data">
                 <div class="col-md-4">
                     <label for="book_isbn" class="form-label"></label>
-                    <input type="" name="book_isbn" class="form-control" id="book_isbn" placeholder="978-0-321-94786-4">
+                    <input type="text" name="book_isbn" class="form-control" id="book_isbn" placeholder="978-0-321-94786-4">
                     <div class="text-muted"><small>Mã vạch</small></div>
                 </div>
                 <div class="col-md-4">
                     <label for="book_title" class="form-label">Tiêu đề</label>
-                    <input type="" name="book_title" class="form-control" id="book_title" placeholder="Tự Động Hóa PLC S7-1200 Với Tia Portal">
+                    <input type="text" name="book_title" class="form-control" id="book_title" placeholder="Tự Động Hóa PLC S7-1200 Với Tia Portal">
                 </div>
                 <div class="col-md-4">
                     <label for="book_author" class="form-label">Tác giả</label>
-                    <input type="" name="book_author" class="form-control" id="book_author" placeholder="Trần Văn Hiếu">
+                    <input type="text" name="book_author" class="form-control" id="book_author" placeholder="Trần Văn Hiếu">
                 </div>
-				<div class="col-md-4">
-                    <label for="book_image" class="form-label">Hình ảnh</label>
+                <div class="col-md-4">
+                    <label for="book_Category" class="form-label">Chủ đề</label>
+                    <input type="text" name="book_Category" class="form-control" id="book_Category" placeholder="Vừa học vừa chơi">
+                </div>
+                <div class="col-md-4">
+                    <label for="book_descr" class="form-label">Miêu tả về sách</label>
+                    <input type="text" name="book_descr" class="form-control" id="book_descr" placeholder="Tự Động Hóa PLC S7-1200 ">
+                </div>
+                <div class="col-md-4">
+                    <label for="book_price" class="form-label">Giá bán</label>
+                    <input type="text" name="book_price" class="form-control" id="book_price" placeholder="1200">
+                </div>
+                <div class="col-md-4">
+                    <label for="publisherid" class="form-label">Nhà sản xuất</label>
+                    <input type="text" name="publisherid" class="form-control" id="publisherid" placeholder="Wrox">
+                </div>
+                <div class="col">
+                    <label for="avatar" class="form-label">Thay đổi ảnh</label>
                     <div class="mb-3">
                         <img src="<?php echo $row['book_image']; ?>" alt="" style="width : 10%">
                     </div>
                     <input type="file" name="fileToUpload" id="fileToUpload" class=" mb-3 form-control" value="chọn ảnh">
-                </div>
-                <div class="col-md-4">
-                    <label for="book_Category" class="form-label">Chủ đề</label>
-                    <input type="tel" name="book_Category" class="form-control" id="book_Category" placeholder="Vừa học vừa chơi">
-                </div>
-                <div class="col-md-4">
-                    <label for="book_descr" class="form-label">Miêu tả về sách</label>
-                    <input type="book_descr" name="book_descr" class="form-control" id="book_descr" placeholder="Tự Động Hóa PLC S7-1200 ">
-                </div>
-				<div class="col-md-4">
-                    <label for="book_price" class="form-label">Giá bán</label>
-                    <input type="book_price" name="book_price" class="form-control" id="book_price" placeholder="1200">
-                </div>
-				<div class="col-md-4">
-                    <label for="publisherid" class="form-label">Nhà sản xuất</label>
-                    <input type="publisherid" name="publisherid" class="form-control" id="publisherid" placeholder="Wrox">
-                </div>
-                        <?php
-                        require("../constants.php");
-                        $sql = "SELECT * FROM books";
-                        $result = mysqli_query($conn, $sql);
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<option value ="' . $row['book_isbn'] . '">' . '</option>';
-                            }
-                        }
-                        ?>
-                    </select>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
                     <button type="submit" name="submit" class="btn btn-outline-danger ">
@@ -80,7 +69,7 @@ include("./header.php");
     </div>
 </div>
 <?php
-include("./footer.php");
+include("footer.php");
 
 
 
@@ -100,17 +89,15 @@ if (isset($_POST['submit'])) {
     $book_Category = $_POST['book_Category'];
     $book_descr = $_POST['book_descr'];
     $book_price = $_POST['book_price'];
-	$publisherid = $_POST['publisherid'];
-    $target_dir = "upload/upload-img/"; //chỉ định thư mục nơi tệp sẽ được đặt
+    $publisherid = $_POST['publisherid'];
+
+
+    $target_dir = "img/"; //chỉ định thư mục nơi tệp sẽ được đặt
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
     $uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
 
-    // Kiểm tra xem tệp đã tồn tại chưa
-    if (file_exists($target_file)) {
-        echo "Xin lỗi, ảnh bạn đã tồn tại.";
-        $uploadOk = 0;
-    }
+
 
     // kiểm tra kích cỡ ảnh
     if (
@@ -140,12 +127,12 @@ if (isset($_POST['submit'])) {
             echo "Xin lỗi, đã có lỗi tải lên tệp của bạn.";
         }
     }
+
     // echo $avatar;
     // update
-    require('../constants.php');
     //2. SQL Query to Save the data into database
-    $sql = "INSERT INTO book_add(book_title, book_author, book_image, book_descr) 
-        VALUES (NULL,'$book_isbn','$book_title',NULL,'$book_author','$book_Category','$book_descr', '$book_price','$publisherid','$target_file')";
+    $sql = "INSERT INTO books`(book_isbn`, book_title, book_author, book_image, book_Category, book_descr, book_price, publisherid) 
+    VALUES ('$book_isbn','$book_title','$book_author','$target_dir','$book_Category','$book_descr','$book_price','$publisherid')";
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);
 
@@ -160,7 +147,7 @@ if (isset($_POST['submit'])) {
 
         $_SESSION['add'] = "<div class='error'>không hợp lệ</div>";
         //Redirect Page to Add Admin
-        header("location: add_book.php");
+        header("location: admin_add_book.php");
     }
 }
 
