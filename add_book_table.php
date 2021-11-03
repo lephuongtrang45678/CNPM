@@ -9,35 +9,44 @@ include('./header.php');
             </a>
         </div>
         <div class="col-12">
-            <div class="row">
-                <?php
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tên sách</th>
+                        <th scope="col">Tác giả</th>
+                        <th scope="col">Miêu tả sách</th>
+                        <th scope="col">Bìa sách</th>
 
-                $sql = "SELECT * FROM books_add  ";
-                $res = mysqli_query($conn, $sql);
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    //lấy dữ liệu từ CSDL và để ra bảng (phần lặp lại)
+                    //bước 1:kết nối tời csdl(mysql) 
+                    //bước 2 khai báo câu lệnh thực thi và thực hiện truy vấn
+                    $sql = "SELECT * FROM books_add  ";
+                    $res = mysqli_query($conn, $sql);
 
-                while ($row = mysqli_fetch_array($res)) { ?>
+                    //bước 3 xử lý kết quả trả về
+                    if (mysqli_num_rows($res) > 0) {
+                        $i = 1;
+                        while ($row = mysqli_fetch_assoc($res)) {
+                    ?>
 
-                    <table class="table">
-                        <thead>
                             <tr>
-                                <th scope="col">Tên sách</th>
-                                <th scope="col">Tác giả</th>
-                                <th scope="col">Miêu tả sách</th>
-                                <th scope="col">Bìa sách</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"><?= $row['book_title'] ?></th>
+                                <th scope="row"><?php echo $i; ?> </th>
+                                <td><?= $row['book_title'] ?></td>
                                 <td><?= $row['book_author'] ?></td>
                                 <td><?= $row['book_descr'] ?></td>
                                 <td><?= $row['book_image'] ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                <?php }
-                ?>
-            </div>
+                        <?php
+                            $i++;
+                        }
+                    }
+                        ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -54,44 +54,94 @@ if (isset($_SESSION['cart_to_buy']) && (array_count_values($_SESSION['cart_to_bu
     </table>
     <div class="container">
         <div class="row">
-
-            <form method="post" action="process.php" class="form-horizontal">
-                <?php if (isset($_SESSION['err']) && $_SESSION['err'] == 1) { ?>
-                    <p class="text-danger">đã nhập</p>
-                <?php } ?>
-                <div class="col-12 ">
-                    <label for="address" class="control-label col-md-4">Địa chỉ</label>
-                    <div class="col-md-4  ">
-                        <input type="text" name="address" class="col-md-4" class="form-control">
+            <form method="post" class="form-horizontal">
+                
+                    <div class="col-12 ">
+                        <label for="address" class="control-label col-md-4">Địa chỉ</label>
+                        <div class="col-md-4  ">
+                            <input type="text" name="address" class="col-md-4" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 mt-2">
-                    <label for="city" class="control-label col-md-4">Thành phố</label>
-                    <div class="col-md-4  ">
-                        <input type="text" name="city" class="col-md-4" class="form-control">
+                    <div class="col-12 mt-2">
+                        <label for="city" class="control-label col-md-4">Thành phố</label>
+                        <div class="col-md-4  ">
+                            <input type="text" name="city" class="col-md-4" class="form-control">
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-12 ">
-                    <input type="submit" name="order" value="ĐẶT HÀNG" class="btn btn-outline-danger mt-4">
-                </div>
+                    <div class="col-12 ">
+                        <input type="submit" name="order" value="ĐẶT HÀNG" class="btn btn-outline-danger mt-4">
 
+                    </div>
             </form>
         </div>
 
     </div>
     <p class="lead">Vui lòng nhấn ĐẶT HÀNG để xác nhận giao dịch mua hàng của bạn hoặc tiếp tục mua sắm để thêm hoặc xóa các mục.</p>
-<?php
-} else {
+<?php }
+ else {
     echo "<p class=\"text-danger\">Giỏ của bạn trống trơn! Hãy chắc chắn rằng bạn thêm một số sách trong đó!</p>";
 }
 
-
-
-
-
-if (isset($conn)) {
-    mysqli_close($conn);
-}
 include("footer.php");
+
+$userid = $_SESSION['userid'];
+
+if (isset($_POST['order'])) {
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+
+    $query = "UPDATE users SET address='$address',city='$city' WHERE userid =$userid ";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        $sql1 = "SELECT * FROM users ";
+        $res1 = mysqli_query($conn, $sql1);
+
+        if (mysqli_num_rows($res1) > 0) {
+            $row = mysqli_fetch_assoc($res1);
+            $userid = $row['userid'];
+
+            $date = date("Y-m-d H:i:s");
+            $sql2 = "INSERT INTO orders VALUES 
+			(NULL, '" . $userid . "', '" . $_SESSION['total_price_cart'] . "', '" . $date . "', '" . $address . "', '" . $city . "', 'Đang xử lý')";
+            $res2 = mysqli_query($conn, $sql2);
+        }
+    } else {
+        return null;
+    }
+
+    $sql = "SELECT orderid FROM orders, users WHERE orders.userid = users.userid ";
+    $res = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $row = mysqli_fetch_assoc($res);
+        $orderid = $row['orderid'];
+    }
+
+    foreach ($_SESSION['cart_to_buy'] as $isbn => $qty) {
+        $query = "SELECT book_price FROM books WHERE book_isbn = '$isbn'";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $bookprice = $row['book_price'];
+
+            echo $sql_2 = "INSERT INTO order_items VALUES 
+        ('$orderid', '$isbn', '$bookprice', '$qty')";
+            $res_2 = mysqli_query($conn, $sql_2);
+            if (!$res_2) {
+                echo "Insert value false!" . mysqli_error($conn);
+                exit;
+            }
+        }
+    }
+}
+
+
+
+
+
+session_unset();
+
+$_SESSION['success'] = "<div class='danger'>Thanh toán thành công đơn hàng của bạn.</div>";
+header("Location:" . SITEURL . "check_cart.php");
 ?>

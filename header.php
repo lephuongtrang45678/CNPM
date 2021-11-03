@@ -24,32 +24,33 @@ ob_start();
                 <a class="nav-link text-decoration-none text-muted  href=" #"><i class="fas fa-info"></i> Trợ giúp</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted" href="#"><i class="far fa-newspaper"></i> Tin tức</a></a>
+                <a class="nav-link text-decoration-none text-muted" href="#"><i class="far fa-newspaper"></i> Tin tức</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted" href="#"><i class="fas fa-tags"></i> Khuyến mãi</a></a>
+                <a class="nav-link text-decoration-none text-muted" href="#"><i class="fas fa-tags"></i> Khuyến mãi</a>
             </li>
 
         </ul>
         <ul class="nav ">
             <li class="nav-item">
-                <a class="nav-link text-decoration-none text-muted  href=" ./add_book_table.php"><i class="fas fa-book-medical"></i></i></i>  Sách Chưa có</a></a>
+                <a href=" add_book_table.php" class="nav-link text-decoration-none text-muted"><i class=" fas fa-book-medical"></i> Sách Chưa có</a>
             </li>
             <li class="nav-item">
-                <a href="check_cart.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-box-open"></i> Kiểm tra đơn hàng</a></a>
+                <a href="check_cart.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-box-open"></i> Kiểm tra đơn hàng</a>
             </li>
 
             <?php
             if (isset($_SESSION['user'])) { ?>
                 <li class="nav-item">
-                    <a href="./logout.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng Xuất </a></a>
+                    <a href="./logout.php" class="nav-link text-decoration-none text-muted text-center "><i class="fas fa-sign-in-alt"></i> Đăng Xuất </a>
+                    <div class="text-muted"><?php echo $_SESSION['user'] ?></div>
                 </li>
             <?php } else { ?>
                 <li class="nav-item">
-                    <a href="./register.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-user-plus"></i> Đăng Ký</a></a>
+                    <a href="./register.php" class="nav-link text-decoration-none text-muted"><i class="fas fa-user-plus"></i> Đăng Ký</a>
                 </li>
                 <li class="nav-item">
-                    <a href="./login.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng nhập </a></a>
+                    <a href="./login.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng nhập </a>
                 </li>
             <?php }
             ?>

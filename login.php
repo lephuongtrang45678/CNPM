@@ -81,14 +81,15 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($res);
         $pass_save = $row['password'];
         if (password_verify($pass, $pass_save)) {
-            $_SESSION['login'] = "<div class='danger'>dang nhap thanh cong.</div>";
+            $_SESSION['login'] = "<div class='danger'>Đăng nhập thành công.</div>";
             $_SESSION['user'] = $email;
             $_SESSION['userid'] = $row['userid'];
+
 
             
             header("Location:index.php");
         } else {
-            $response = 'mat khau sai';
+            $response = 'Mật khẩu sai';
             header("Location:" . SITEURL . "login.php?response=$response");
         }
     } else {

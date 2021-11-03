@@ -11,10 +11,10 @@ include('header.php')
             </div>
             <div>
                 <div class="sidemenu-box">
-                    <h6 class="title">Theo dịp </h6>
+
 
                     <?php
-                    
+
                     $query = "SELECT distinct book_Category FROM books ";
                     $result = mysqli_query($conn, $query);
 
@@ -91,25 +91,16 @@ include('header.php')
                             <a href="" class="text-decoration-none text-muted">nhỏ hơn 50.000đ</a>
                         </li>
                         <li>
-                            <a href="" class="text-decoration-none text-muted">từ 50.000 - 100.000đ</a>
+                            <a href="" class="text-decoration-none text-muted">từ 50.000 - 300.000đ</a>
                         </li>
                         <li>
-                            <a href="" class="text-decoration-none text-muted">từ 100.000 - 200.000đ</a>
+                            <a href="" class="text-decoration-none text-muted">từ 300.000 - 700.000đ</a>
                         </li>
                         <li>
-                            <a href="" class="text-decoration-none text-muted">từ 200.000 - 300.000đ</a>
+                            <a href="" class="text-decoration-none text-muted">từ 700.000 - 1.000.000đ</a>
                         </li>
                         <li>
-                            <a href="" class="text-decoration-none text-muted">từ 300.000 - 400.000đ</a>
-                        </li>
-                        <li>
-                            <a href="" class="text-decoration-none text-muted">từ 400.000 - 500.000đ</a>
-                        </li>
-                        <li>
-                            <a href="" class="text-decoration-none text-muted">từ 500.000 - 1.000.000đ</a>
-                        </li>
-                        <li>
-                            <a href="" class="text-decoration-none text-muted">lớn hơn 1.000.000đ</a>
+                            <a class="text-decoration-none text-danger" href=" books.php">Xem tất cả sách</a>
                         </li>
                     </ul>
                 </div>
