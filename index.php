@@ -12,9 +12,10 @@ include('header.php')
             <div>
                 <div class="sidemenu-box">
                     <h6 class="title">Theo dịp </h6>
-                    // 'distinst'
+
                     <?php
-                    $query = "SELECT * FROM books ORDER BY book_Category";
+                    
+                    $query = "SELECT distinct book_Category FROM books ";
                     $result = mysqli_query($conn, $query);
 
 
