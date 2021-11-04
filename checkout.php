@@ -56,31 +56,30 @@ if (isset($_SESSION['cart_to_buy']) && (array_count_values($_SESSION['cart_to_bu
     <div class="container">
         <div class="row">
             <form method="post" class="form-horizontal">
-                
-                    <div class="col-12 ">
-                        <label for="address" class="control-label col-md-4">Địa chỉ</label>
-                        <div class="col-md-4  ">
-                            <input type="text" name="address" class="col-md-4" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <label for="city" class="control-label col-md-4">Thành phố</label>
-                        <div class="col-md-4  ">
-                            <input type="text" name="city" class="col-md-4" class="form-control">
-                        </div>
-                    </div>
 
-                    <div class="col-12 ">
-                        <input type="submit" name="order" value="ĐẶT HÀNG" class="btn btn-outline-danger mt-4">
-
+                <div class="col-12 ">
+                    <label for="address" class="control-label col-md-4">Địa chỉ</label>
+                    <div class="col-md-4  ">
+                        <input type="text" name="address" class="col-md-4" class="form-control">
                     </div>
+                </div>
+                <div class="col-12 mt-2">
+                    <label for="city" class="control-label col-md-4">Thành phố</label>
+                    <div class="col-md-4  ">
+                        <input type="text" name="city" class="col-md-4" class="form-control">
+                    </div>
+                </div>
+
+                <div class="col-12 ">
+                    <input type="submit" name="order" value="ĐẶT HÀNG" class="btn btn-outline-danger mt-4">
+
+                </div>
             </form>
         </div>
 
     </div>
     <p class="lead">Vui lòng nhấn ĐẶT HÀNG để xác nhận giao dịch mua hàng của bạn hoặc tiếp tục mua sắm để thêm hoặc xóa các mục.</p>
-<?php }
- else {
+<?php } else {
     echo "<p class=\"text-danger\">Giỏ của bạn trống trơn! Hãy chắc chắn rằng bạn thêm một số sách trong đó!</p>";
 }
 
@@ -135,14 +134,15 @@ if (isset($_POST['order'])) {
             }
         }
     }
+    unset($_SESSION['cart_to_buy']);
+
+    $_SESSION['success'] = "<div class='danger'>Thanh toán thành công đơn hàng của bạn.</div>";
+    header("Location:" . SITEURL . "check_cart.php");
 }
 
 
 
 
 
-session_unset();
 
-$_SESSION['success'] = "<div class='danger'>Thanh toán thành công đơn hàng của bạn.</div>";
-// header("Location:" . SITEURL . "check_cart.php");
 ?>

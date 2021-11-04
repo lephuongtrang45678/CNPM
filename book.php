@@ -27,7 +27,7 @@ if (!$row) {
         <h5 class="mt-3 mb-3"><a href="books.php" class="text-decoration-none text-danger">Tất cả sách</a> > <?php echo $row['book_title']; ?></h5>
         <div class="row">
             <div class="col-md-3 text-center">
-                <img class="img-thumbnail img-fluid" src="img/img-index/<?php echo $row['book_image']; ?>">
+                <img class="img-thumbnail img-fluid" src="<?php echo $row['book_image']; ?>">
             </div>
             <div class="col-md-6">
                 <h4>Miêu tả về sách</h4>
