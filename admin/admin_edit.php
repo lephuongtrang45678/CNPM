@@ -92,6 +92,8 @@ ob_start();
 		$book_descr = $_POST['book_descr'];
 		$book_price = $_POST['book_price'];
 		$publisherid = $_POST['publisherid'];
+
+		
 		$target_dir = "img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
 		$uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)

@@ -2,7 +2,7 @@
 include("../constants.php");
 ?>
 <?php
-if(!isset($_SESSION['login'])){
+if (!isset($_SESSION['login'])) {
     header("Location:admin.php");
 }
 
@@ -36,19 +36,19 @@ if(!isset($_SESSION['login'])){
                 <div class="col-md-9">
                     <ul class="nav justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link" href="publisher.php"><i class="fas fa-users"></i>Nhà xuất bản</a>
+                            <a class="nav-link" href="publisher.php"><i class="fas fa-users"></i> Nhà xuất bản</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="books.php"><i class="fad fa-books"></i>Sách</a>
+                            <a class="nav-link" href="books.php"><i class="fad fa-books"></i> Sách</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reply.php"><i class="fal fa-phone-rotary"></i>Phản hồi</a>
+                            <a class="nav-link" href="reply.php"><i class="fal fa-phone-rotary"></i> Phản hồi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="mycart.php"><i class="fas fa-cart-plus"></i>Giỏ hàng</a>
+                            <a class="nav-link" href="handle_cart.php"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                            <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                         </li>
 
                     </ul>
