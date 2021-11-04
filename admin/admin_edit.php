@@ -38,7 +38,20 @@ ob_start();
 					<label for="book_author" class="form-label">Tác giả</label>
 					<input type="" name="book_author" class="form-control" id="book_author" value="<?php echo $row_2['book_author']; ?>">
 				</div>
+				<div class="col">
+					<label for="avatar" class="form-label">Thay đổi ảnh</label>
+					<div class="mb-3">
+						<img src="../<?php echo $row_2['book_image']; ?>" alt="" class="img-fluid" style="width: 18%;">
 
+					</div>
+					<input type="file" id="fileToUpload" name="fileToUpload" accept="images/*" class=" mb-3 form-control" value="chọn ảnh">
+					<div class="preview mb-3">
+						<div id="preview">
+							<img src="#" hidden />
+						</div>
+						<div id="err"></div>
+					</div>
+				</div>
 				<div class="col-md-4">
 					<label for="book_Category" class="form-label">Chủ đề</label>
 					<input type="" name="book_Category" class="form-control" id="book_Category" value="<?php echo $row_2['book_Category']; ?>">
@@ -54,20 +67,6 @@ ob_start();
 				<div class="col-md-4">
 					<label for="publisherid" class="form-label">Nhà sản xuất</label>
 					<input type="" name="publisherid" class="form-control" id="publisherid" value="<?php echo $row_2['publisherid']; ?>">
-				</div>
-				<div class="col-12">
-					<label for="avatar" class="form-label">Thay đổi ảnh</label>
-					<div class="mb-3">
-						<img src="../<?php echo $row_2['book_image']; ?>" alt="" class="img-fluid" style="width: 18%;">
-
-					</div>
-					<input type="file" id="fileToUpload" name="fileToUpload" accept="images/*" class=" mb-3 form-control" value="chọn ảnh">
-					<div class="preview mb-3">
-						<div id="preview">
-							<img src="#" hidden />
-						</div>
-						<div id="err"></div>
-					</div>
 				</div>
 				<div class="col-12 d-flex justify-content-center mt-3">
 					<button type="submit" name="submit" class="btn btn-outline-danger ">
@@ -93,8 +92,6 @@ ob_start();
 		$book_descr = $_POST['book_descr'];
 		$book_price = $_POST['book_price'];
 		$publisherid = $_POST['publisherid'];
-
-
 		$target_dir = "img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
 		$uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
