@@ -54,10 +54,13 @@ ob_start();
                 </div>
                 <div class="col">
                     <label for="avatar" class="form-label">Thay đổi ảnh</label>
-                    <div class="mb-3">
-                        <img src="<?php echo $row['book_image']; ?>" alt="" style="width : 10%">
+                    <input type="file" id="fileToUpload" name="fileToUpload" accept="images/*" class=" mb-3 form-control" value="chọn ảnh">
+                    <div class="preview mb-3">
+                        <div id="preview">
+                            <img src="#" hidden />
+                        </div>
+                        <div id="err"></div>
                     </div>
-                    <input type="file" name="fileToUpload" id="fileToUpload" class=" mb-3 form-control" value="chọn ảnh">
                 </div>
                 <div class="col-12 d-flex justify-content-center">
                     <button type="submit" name="submit" class="btn btn-outline-danger ">
@@ -92,7 +95,7 @@ if (isset($_POST['submit'])) {
     $publisherid = $_POST['publisherid'];
 
 
-    $target_dir = "img/"; //chỉ định thư mục nơi tệp sẽ được đặt
+    $target_dir = "img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
     $uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
@@ -131,7 +134,7 @@ if (isset($_POST['submit'])) {
     // echo $avatar;
     // update
     //2. SQL Query to Save the data into database
-    $sql = "INSERT INTO books`(book_isbn`, book_title, book_author, book_image, book_Category, book_descr, book_price, publisherid) 
+    $sql = "INSERT INTO `books`(`book_isbn`, `book_title`, `book_author`, `book_image`, `book_Category`, `book_descr`, `book_price`, `publisherid`) 
     VALUES ('$book_isbn','$book_title','$book_author','$target_dir','$book_Category','$book_descr','$book_price','$publisherid')";
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);
@@ -152,3 +155,4 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
+<script type="text/javascript" src="../js/edit-js.js"></script>

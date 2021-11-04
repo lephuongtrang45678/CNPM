@@ -39,7 +39,7 @@ include('./header.php');
                                 <td><?= $row['book_title'] ?></td>
                                 <td><?= $row['book_author'] ?></td>
                                 <td><?= $row['book_descr'] ?></td>
-                                <td><?= $row['book_image'] ?></td>
+                                <td><img src="<?= $row['book_image'] ?>" alt=""></td>
                         <?php
                             $i++;
                         }

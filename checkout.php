@@ -11,7 +11,8 @@
 	*/
 session_start();
 include('header.php');
-include('./function_cart.php');
+// include('./check-login.php');
+
 // print out header here
 
 
@@ -143,5 +144,5 @@ if (isset($_POST['order'])) {
 session_unset();
 
 $_SESSION['success'] = "<div class='danger'>Thanh toán thành công đơn hàng của bạn.</div>";
-header("Location:" . SITEURL . "check_cart.php");
+// header("Location:" . SITEURL . "check_cart.php");
 ?>
