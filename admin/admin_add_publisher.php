@@ -7,7 +7,7 @@ ob_start();
         <div class="col d-flex"><a href="index.php"><i class="fas fa-chevron-left "></i></a>
             <h4 class="ms-2">Trở lại trang chủ</h4>
         </div>
-        <div class="col text-end"><a href="./admin_book.php"><button class="btn btn-outline-danger" type="submit">Hủy</button></a></div>
+        <div class="col text-end"><a href="./publisher.php"><button class="btn btn-outline-danger" type="submit">Hủy</button></a></div>
     </div>
     <?php
 

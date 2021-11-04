@@ -9,6 +9,7 @@ include('header.php');
                 Quản lý nhà sản xuất
             </h1>
         </div>
+		<p class="lead btn btn-danger mt-5 mb-3 "><a href="admin_add_publisher.php" class="text-decoration-none text-white">Thêm</a></p>
         <div class="container">
             <div class="row">
                 <table class="table table-striped">
@@ -20,6 +21,7 @@ include('header.php');
                             <th scope="col">Email</th>
                             <th scope="col">Hotline</th>
                             <th scope="col">Địa chỉ</th>
+							<th scope="col">Sửa</th>
                         </tr>
                     </thead>
                     <tbody>

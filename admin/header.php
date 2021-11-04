@@ -43,7 +43,7 @@ if (!isset($_SESSION['login'])) {
                             <a class="nav-link dropdown-toggle hover-th" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lý
                             </a>
                             <ul class="dropdown-menu my-subnav" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="books.php">Sách</a></li>
+                                <li><a class="dropdown-item" href="admin_book.php">Sách</a></li>
                                 <li><a class="dropdown-item" href="publisher.php">Nhà xuất bản</a>
                                 </li>
 
