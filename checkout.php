@@ -101,7 +101,7 @@ if (isset($_POST['order'])) {
 
 
 
-    $sql = "SELECT orderid FROM orders WHERE orders.userid = '$userid' ORDER BY orderid DESC  ";
+    $sql = "SELECT orderid FROM orders WHERE orders.userid = '$userid'";
     $res = mysqli_query($conn, $sql);
     if (mysqli_num_rows($res) > 0) {
         $row = mysqli_fetch_assoc($res);
