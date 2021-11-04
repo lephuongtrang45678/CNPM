@@ -85,33 +85,23 @@ if (isset($_SESSION['cart_to_buy']) && (array_count_values($_SESSION['cart_to_bu
 
 include("footer.php");
 
-$userid = $_SESSION['userid'];
+echo $userid = $_SESSION['userid'];
 
 if (isset($_POST['order'])) {
     $address = $_POST['address'];
     $city = $_POST['city'];
 
-    $query = "UPDATE users SET address='$address',city='$city' WHERE userid =$userid ";
+    echo $query = "UPDATE `users` SET `address`='$address',`city`='$city' WHERE `userid`='$userid'";
     $result = mysqli_query($conn, $query);
 
-    if ($result) {
-        $sql1 = "SELECT * FROM users ";
-        $res1 = mysqli_query($conn, $sql1);
-
-        if (mysqli_num_rows($res1) > 0) {
-            $row = mysqli_fetch_assoc($res1);
-            $userid = $row['userid'];
-
-            $date = date("Y-m-d H:i:s");
-            $sql2 = "INSERT INTO orders VALUES 
+    $date = date("Y-m-d H:i:s");
+    echo $sql2 = "INSERT INTO orders VALUES 
 			(NULL, '" . $userid . "', '" . $_SESSION['total_price_cart'] . "', '" . $date . "', '" . $address . "', '" . $city . "', 'Đang xử lý')";
-            $res2 = mysqli_query($conn, $sql2);
-        }
-    } else {
-        return null;
-    }
+    $res2 = mysqli_query($conn, $sql2);
 
-    $sql = "SELECT orderid FROM orders, users WHERE orders.userid = users.userid ";
+
+
+    $sql = "SELECT orderid FROM orders WHERE orders.userid = '$userid' ORDER BY orderid DESC  ";
     $res = mysqli_query($conn, $sql);
     if (mysqli_num_rows($res) > 0) {
         $row = mysqli_fetch_assoc($res);
@@ -126,7 +116,7 @@ if (isset($_POST['order'])) {
             $bookprice = $row['book_price'];
 
             echo $sql_2 = "INSERT INTO order_items VALUES 
-        ('$orderid', '$isbn', '$bookprice', '$qty')";
+            ('$orderid', '$isbn', '$bookprice', '$qty')";
             $res_2 = mysqli_query($conn, $sql_2);
             if (!$res_2) {
                 echo "Insert value false!" . mysqli_error($conn);
@@ -136,10 +126,9 @@ if (isset($_POST['order'])) {
     }
     unset($_SESSION['cart_to_buy']);
 
-    $_SESSION['success'] = "<div class='danger'>Thanh toán thành công đơn hàng của bạn.</div>";
+    echo $_SESSION['success'] = "<div class='danger'>Thanh toán thành công đơn hàng của bạn.</div>";
     header("Location:" . SITEURL . "check_cart.php");
 }
-
 
 
 
