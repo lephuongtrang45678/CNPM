@@ -1,7 +1,7 @@
 <?php
     include("./header.php");
-	$book_title = $_GET['booktitle'];
-	$query = "DELETE FROM books_add WHERE book_title = '$book_title'";
+	$book_ad_id = $_GET['bookadid'];
+	$query = "DELETE FROM books_add WHERE book_ad_id = '$book_ad_id'";
 	$result = mysqli_query($conn, $query);
 	if(!$result){
 		echo "delete data unsuccessfully " . mysqli_error($conn);

@@ -6,6 +6,7 @@ include("./header.php");
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
+		    <th>ID</th>
 			<th>Tiêu đề</th>
 			<th>Tác giả</th>
 			<th>Hình ảnh</th>
@@ -24,6 +25,7 @@ include("./header.php");
 			while ($row = mysqli_fetch_assoc($result)) {
 		?>
 				<tr>
+				    <td><?php echo $row['book_ad_id']; ?></td>
 					<td><?php echo $row['book_title']; ?></td>
 					<td><?php echo $row['book_author']; ?></td>
 					<td>
@@ -32,7 +34,7 @@ include("./header.php");
 						</div>
 					</td>
 					<td><?php echo $row['book_descr']; ?></td>
-					<td><a href="delete_books_add.php?booktitle=<?php echo $row['book_author']; ?>" class="text-danger"><i class="fas fa-minus-square"></i></a></td>
+					<td><a href="delete_books_add.php?bookadid=<?php echo $row['book_ad_id']; ?>" onclick="return confirm('Bạn chắc chắn muốn xóa?')" class="text-danger"><i class="fas fa-minus-square"></i></a></td>
 				</tr>
 		<?php
 				$i++;

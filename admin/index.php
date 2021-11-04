@@ -1,53 +1,59 @@
-<?php
-include("./check_login.php");
-include ("header.php");
-  $count = 0;
+<?php 
+include('header.php');
 ?>
-    <?php
-    if (isset($_SESSION['login'])) {
-        echo $_SESSION['login'];
-        unset($_SESSION['login']);
+
+<div class="ad-index">
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center ad-title">
+                Tổng quan
+            </h1>
+        </div>
+        <?php
+    $sql = "select count(*) as TongDon from orders where DATE(date) = CURDATE() ";
+    $result = mysqli_query($conn, $sql);
+    $tongDon=0;
+if(mysqli_num_rows($result)>0){ 
+    while($row=mysqli_fetch_assoc($result)){
+        $tongDon = $row['TongDon'];
     }
-      if(isset($title) && $title == "Index") {
-    ?>
-    <?php } ?>
-      <!-- hàng cột -->
-      <p class="lead text-center text-muted">Sách mới nhất</p>
-      <div class="row">
-                    <div class="col-md-2">
-                    <a href="./click_book.php">
-                        <img src="./img/book4.jpg" alt="">
-                    </a>
-                    </div>
-                    <div class="col-md-2">
-                    <a href="./img/book5.jpg">
-                        <img src="./img/book5.jpg" alt="">
-                    </a>
-                    </div>
-                    <div class="col-md-2">
-                    <a href="./img/book6.jpg">
-                        <img src="./img/book6.jpg" alt="">
-                    </a>
-                    </div>
-                    <div class="col-md-2">
-                    <a href="./img/book7.png">
-                        <img src="./img/book7.png" alt="">
-                    </a> </div>
-                    <div class="col-md-2">
-                    <a href="./img/book8.gif">
-                        <img src="./img/book8.gif" alt="">
-                    </a>
-                    </div>
-                    <div class="col-md-2">
-                    <a href="./img/book9.jpg">
-                        <img src="./img/book9.jpg" alt="">
-                    </a>
-                    </div>
+}
 
-       </div>
+$sql1 = "select count(*) as TongPhanHoi from books_add where DATE(date_add) = CURDATE() ";
+    $result1 = mysqli_query($conn, $sql1);
+    $tongPhanHoi=0;
+if(mysqli_num_rows($result1)>0){ 
+    while($row=mysqli_fetch_assoc($result1)){
+        $tongPhanHoi = $row['TongPhanHoi'];
+    }
+}
+    
 
-
-<?php
-  if(isset($conn)) {mysqli_close($conn);}
-  include ("footer.php");
 ?>
+
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-3 text-center ad-total rounded-circle">
+                <h1><?php echo $tongDon ?></h1>
+                <p>Đơn hàng trong ngày</p>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-3 text-center ad-total rounded-circle">
+                <h1><?php echo $tongPhanHoi ?></h1>
+                <p>Phản hồi trong ngày</p>
+            </div>
+            <div class="col-md-2">
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<?php 
+include('footer.php') ?>

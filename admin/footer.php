@@ -1,9 +1,4 @@
-<hr>
-
-<footer>
-
-</footer>
-</div> <!-- /container -->
+<!-- /container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- cuối trang -->
