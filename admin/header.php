@@ -1,10 +1,11 @@
 <?php
+session_start();
 include("../constants.php");
 ?>
 <?php
-// if(!isset($_SESSION['login'])){
-//     header("Location:admin.php");
-// }
+if (!isset($_SESSION['login'])) {
+    header("Location:admin.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -17,11 +18,9 @@ include("../constants.php");
 
     <title>BUY_BOOK</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -41,8 +40,7 @@ include("../constants.php");
                             <a class="nav-link" href="index.php"><i class="fas fa-home"></i>Trang chủ</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle hover-th" href="#" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lý
+                            <a class="nav-link dropdown-toggle hover-th" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lý
                             </a>
                             <ul class="dropdown-menu my-subnav" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="books.php">Sách</a></li>
