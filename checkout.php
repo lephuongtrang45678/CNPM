@@ -94,9 +94,10 @@ if (isset($_POST['order'])) {
     echo $query = "UPDATE `users` SET `address`='$address',`city`='$city' WHERE `userid`='$userid'";
     $result = mysqli_query($conn, $query);
 
-    $date = date("Y-m-d H:i:s");
+    $date = date("Y-m-d ");
+    $date_ship = date('Y-m-d', strtotime($date . ' + 5 days'));
     echo $sql2 = "INSERT INTO orders VALUES 
-			(NULL, '" . $userid . "', '" . $_SESSION['total_price_cart'] . "', '" . $date . "', '" . $address . "', '" . $city . "', 'Đang xử lý')";
+			(NULL, '" . $userid . "', '" . $_SESSION['total_price_cart'] . "', '" . $date . "', '" . $date_ship . "', '" . $address . "', '" . $city . "', 'Đang xử lý')";
     $res2 = mysqli_query($conn, $sql2);
 
 
