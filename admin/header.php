@@ -1,9 +1,10 @@
 <?php
 include("../constants.php");
-
-if (!isset($_SESSION['login'])) {
-    header("Location:admin.php");
-}
+?>
+<?php
+// if(!isset($_SESSION['login'])){
+//     header("Location:admin.php");
+// }
 
 ?>
 <!DOCTYPE html>
@@ -37,19 +38,27 @@ if (!isset($_SESSION['login'])) {
                 <div class="col-md-9">
                     <ul class="nav justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link" href="publisher.php"><i class="fas fa-users"></i> Nhà xuất bản</a>
+                            <a class="nav-link" href="index.php"><i class="fas fa-home"></i>Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle hover-th" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lý
+                            </a>
+                            <ul class="dropdown-menu my-subnav" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="books.php">Sách</a></li>
+                                <li><a class="dropdown-item" href="publisher.php">Nhà xuất bản</a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="books.php"><i class="fad fa-books"></i> Sách</a>
+                            <a class="nav-link" href="reply.php"><i class="fal fa-phone-rotary"></i>Xử lý phản hồi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reply.php"><i class="fal fa-phone-rotary"></i> Phản hồi</a>
+                            <a class="nav-link" href="handle_cart.php"><i class="fas fa-cart-plus"></i>Xử lý đơn hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="handle_cart.php"><i class="fas fa-shopping-cart"></i> Giỏ hàng</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                            <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
                         </li>
 
                     </ul>
