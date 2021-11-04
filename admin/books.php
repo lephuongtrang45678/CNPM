@@ -54,7 +54,7 @@ include('header.php');
                             <td><?php echo $book_title ?></td>
                             <td><?php echo $book_author ?></td>
                             <td>
-                                <img src="<?php echo $book_image ?>" alt="" width="100px" height="120px">
+                                <img src="../<?php echo $book_image ?>" alt="" width="100px" height="120px">
                             </td>
                             <td><?php echo $book_category ?></td>
                             <td><?php echo $book_descr ?></td>
