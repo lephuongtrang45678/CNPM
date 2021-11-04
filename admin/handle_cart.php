@@ -50,8 +50,8 @@ include('./header.php');
                             <td><?php echo $row['order_status']; ?> </td>
                             <td><a href="detail_cart.php?orderid=<?php echo $row['orderid'] ?>" class="text-decotion-none text-danger "><i class="fas fa-info-circle"></i></a></td>
 
-                            <td><input type="submit" name="confirm" onclick="return confirm('Bạn đã xử lý xong yêu cầu này?')" value="Xác nhận đơn hàng" class="btn btn-outline-danger"></td>
-                            <td><input type="hidden" name="orderid" value="<?php echo $row['orderid']?>"></td>
+                            <td><input type="submit" name="confirm" value="Xác nhận đơn hàng" class="btn btn-outline-danger"></td>
+                            <td><input type="hidden" name="orderid" value="<?php echo $row['orderid'] ?>"></td>
 
                         </tr>
                 <?php
