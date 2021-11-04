@@ -2,9 +2,9 @@
 include("../constants.php");
 ?>
 <?php
-if(!isset($_SESSION['login'])){
-    header("Location:admin.php");
-}
+// if(!isset($_SESSION['login'])){
+//     header("Location:admin.php");
+// }
 
 ?>
 <!DOCTYPE html>
@@ -17,9 +17,11 @@ if(!isset($_SESSION['login'])){
 
     <title>BUY_BOOK</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -36,16 +38,24 @@ if(!isset($_SESSION['login'])){
                 <div class="col-md-9">
                     <ul class="nav justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link" href="publisher.php"><i class="fas fa-users"></i>Nhà xuất bản</a>
+                            <a class="nav-link" href="index.php"><i class="fas fa-home"></i>Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle hover-th" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lý
+                            </a>
+                            <ul class="dropdown-menu my-subnav" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="books.php">Sách</a></li>
+                                <li><a class="dropdown-item" href="publisher.php">Nhà xuất bản</a>
+                                </li>
+
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="books.php"><i class="fad fa-books"></i>Sách</a>
+                            <a class="nav-link" href="reply.php"><i class="fal fa-phone-rotary"></i>Xử lý phản hồi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reply.php"><i class="fal fa-phone-rotary"></i>Phản hồi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="mycart.php"><i class="fas fa-cart-plus"></i>Giỏ hàng</a>
+                            <a class="nav-link" href="handle_cart.php"><i class="fas fa-cart-plus"></i>Xử lý đơn hàng</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>

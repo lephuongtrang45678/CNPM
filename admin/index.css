@@ -85,3 +85,21 @@ button[type="button"]:hover{
     box-sizing: border-box;
     text-decoration: none;
 }
+
+.ad-title{
+    margin: 32px;
+    color: rgb(148, 80, 17);
+}
+
+.ad-total{
+    margin-top: 48px;
+    padding: 48px;
+    background-color: rgb(202, 110, 35);
+    color: white;
+}
+
+.ad-index{
+    padding-bottom: 200px;
+    background-color: rgb(240, 219, 128);
+    
+}
