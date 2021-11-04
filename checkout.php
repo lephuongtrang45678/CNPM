@@ -85,24 +85,25 @@ if (isset($_SESSION['cart_to_buy']) && (array_count_values($_SESSION['cart_to_bu
 
 include("footer.php");
 
-echo $userid = $_SESSION['userid'];
+$userid = $_SESSION['userid'];
 
 if (isset($_POST['order'])) {
     $address = $_POST['address'];
     $sdt = $_POST['sdt'];
 
-    echo $query = "UPDATE `users` SET `address`='$address',`sdt`='$sdt' WHERE `userid`='$userid'";
+    $query = "UPDATE users SET address='$address',sdt='$sdt' WHERE userid='$userid'";
     $result = mysqli_query($conn, $query);
 
-    $date = date("Y-m-d ");
+    $date = date("Y-m-d");
     $date_ship = date('Y-m-d', strtotime($date . ' + 5 days'));
-    echo $sql2 = "INSERT INTO orders VALUES 
-			(NULL, '" . $userid . "', '" . $_SESSION['total_price_cart'] . "', '" . $date . "', '" . $date_ship . "', '" . $address . "', '" . $sdt . "', 'Đang xử lý')";
+
+    $sql2 = "INSERT INTO orders(orderid, userid, date, date_ship, ship_address, sdt, amount, order_status) 
+    VALUES (NULL, '$userid', '$date', '$date_ship', '$address', '$sdt','" . $_SESSION['total_price_cart'] . "', 'Đang xử lý')";
     $res2 = mysqli_query($conn, $sql2);
 
 
 
-    $sql = "SELECT orderid FROM orders WHERE orders.userid = '$userid'";
+    $sql = "SELECT MAX(orderid) AS orderid FROM orders WHERE orders.userid = '$userid' ";
     $res = mysqli_query($conn, $sql);
     if (mysqli_num_rows($res) > 0) {
         $row = mysqli_fetch_assoc($res);
@@ -116,7 +117,7 @@ if (isset($_POST['order'])) {
             $row = mysqli_fetch_assoc($result);
             $bookprice = $row['book_price'];
 
-            echo $sql_2 = "INSERT INTO order_items VALUES 
+            $sql_2 = "INSERT INTO order_items VALUES 
             ('$orderid', '$isbn', '$bookprice', '$qty')";
             $res_2 = mysqli_query($conn, $sql_2);
             if (!$res_2) {
@@ -128,7 +129,7 @@ if (isset($_POST['order'])) {
     unset($_SESSION['cart_to_buy']);
 
     echo $_SESSION['success'] = "<div class='danger'>Thanh toán thành công đơn hàng của bạn.</div>";
-    // header("Location:" . SITEURL . "check_cart.php");
+    header("Location:" . SITEURL . "check_cart.php");
 }
 
 
