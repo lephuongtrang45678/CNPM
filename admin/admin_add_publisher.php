@@ -23,25 +23,20 @@ ob_start();
         <div class="col border p-3 rounded-2 mt-3">
             <form method="POST" class="row g-3 " enctype="multipart/form-data">
                 <div class="col-md-4">
-                    <label for="book_isbn" class="form-label"></label>
-                    <input type="text" name="book_isbn" class="form-control" id="book_isbn" placeholder="978-0-321-94786-4">
-                    <div class="text-muted"><small>Mã vạch</small></div>
+                    <label for="publisher_name" class="form-label">Tên NSX</label>
+                    <input type="text" name="publisher_name" class="form-control" id="publisher_name" placeholder="">
                 </div>
                 <div class="col-md-4">
-                    <label for="book_title" class="form-label">Tiêu đề</label>
-                    <input type="text" name="book_title" class="form-control" id="book_title" placeholder="Tự Động Hóa PLC S7-1200 Với Tia Portal">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" name="email" class="form-control" id="email" placeholder="">
                 </div>
                 <div class="col-md-4">
-                    <label for="book_author" class="form-label">Tác giả</label>
-                    <input type="text" name="book_author" class="form-control" id="book_author" placeholder="Trần Văn Hiếu">
+                    <label for="hotline" class="form-label">Hotline</label>
+                    <input type="text" name="hotline" class="form-control" id="hotline" placeholder="">
                 </div>
                 <div class="col-md-4">
-                    <label for="book_Category" class="form-label">Chủ đề</label>
-                    <input type="text" name="book_Category" class="form-control" id="book_Category" placeholder="Vừa học vừa chơi">
-                </div>
-                <div class="col-md-4">
-                    <label for="book_descr" class="form-label">Miêu tả về sách</label>
-                    <input type="text" name="book_descr" class="form-control" id="book_descr" placeholder="Tự Động Hóa PLC S7-1200 ">
+                    <label for="location" class="form-label">Địa chỉ</label>
+                    <input type="text" name="location" class="form-control" id="location" placeholder="">
                 </div>
                 <div class="col-md-4">
                     <label for="book_price" class="form-label">Giá bán</label>
