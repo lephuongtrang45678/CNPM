@@ -2,72 +2,73 @@
 include("./header.php");
 ob_start();
 ?>
-
-<div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col d-flex"><a href="admin_book.php"><i class="fas fa-chevron-left "></i></a>
-            <h4 class="ms-2">Trở lại trang chủ</h4>
+<div class="container">
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="col d-flex"><a href="admin_book.php"><i class="fas fa-chevron-left "></i></a>
+                <h4 class="ms-2">Trở lại trang chủ</h4>
+            </div>
+            <div class="col text-end"><a href="./admin_book.php"><button class="btn btn-outline-danger" type="submit">Hủy</button></a></div>
         </div>
-        <div class="col text-end"><a href="./admin_book.php"><button class="btn btn-outline-danger" type="submit">Hủy</button></a></div>
-    </div>
-    <?php
+        <?php
 
-    if (isset($_SESSION['add'])) //Checking whether the SEssion is Set of Not
-    {
-        echo $_SESSION['add']; //Display the SEssion Message if SEt
-        unset($_SESSION['add']); //Remove Session Message
-    }
+        if (isset($_SESSION['add'])) //Checking whether the SEssion is Set of Not
+        {
+            echo $_SESSION['add']; //Display the SEssion Message if SEt
+            unset($_SESSION['add']); //Remove Session Message
+        }
 
 
-    ?>
-    <div class="row">
-        <div class="col border p-3 rounded-2 mt-3">
-            <form method="POST" class="row g-3 " enctype="multipart/form-data">
-                <div class="col-md-4">
-                    <label for="book_isbn" class="form-label"></label>
-                    <input type="text" name="book_isbn" class="form-control" id="book_isbn" placeholder="978-0-321-94786-4">
-                    <div class="text-muted"><small>Mã vạch</small></div>
-                </div>
-                <div class="col-md-4">
-                    <label for="book_title" class="form-label">Tiêu đề</label>
-                    <input type="text" name="book_title" class="form-control" id="book_title" placeholder="Tự Động Hóa PLC S7-1200 Với Tia Portal">
-                </div>
-                <div class="col-md-4">
-                    <label for="book_author" class="form-label">Tác giả</label>
-                    <input type="text" name="book_author" class="form-control" id="book_author" placeholder="Trần Văn Hiếu">
-                </div>
-                <div class="col-md-4">
-                    <label for="book_Category" class="form-label">Chủ đề</label>
-                    <input type="text" name="book_Category" class="form-control" id="book_Category" placeholder="Vừa học vừa chơi">
-                </div>
-                <div class="col-md-4">
-                    <label for="book_descr" class="form-label">Miêu tả về sách</label>
-                    <input type="text" name="book_descr" class="form-control" id="book_descr" placeholder="Tự Động Hóa PLC S7-1200 ">
-                </div>
-                <div class="col-md-4">
-                    <label for="book_price" class="form-label">Giá bán</label>
-                    <input type="text" name="book_price" class="form-control" id="book_price" placeholder="1200">
-                </div>
-                <div class="col-md-4">
-                    <label for="publisherid" class="form-label">Nhà sản xuất</label>
-                    <input type="text" name="publisherid" class="form-control" id="publisherid" placeholder="Wrox">
-                </div>
-                <div class="col">
-                    <label for="avatar" class="form-label">Thay đổi ảnh</label>
-                    <input type="file" id="fileToUpload" name="fileToUpload" accept="images/*" class=" mb-3 form-control" value="chọn ảnh">
-                    <div class="preview mb-3">
-                        <div id="preview">
-                            <img src="#" hidden />
-                        </div>
-                        <div id="err"></div>
+        ?>
+        <div class="row">
+            <div class="col border p-3 rounded-2 mt-3">
+                <form method="POST" class="row g-3 " enctype="multipart/form-data">
+                    <div class="col-md-4">
+                        <label for="book_isbn" class="form-label"></label>
+                        <input type="text" name="book_isbn" class="form-control" id="book_isbn" placeholder="978-0-321-94786-4">
+                        <div class="text-muted"><small>Mã vạch</small></div>
                     </div>
-                </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="submit" name="submit" class="btn btn-outline-danger ">
-                        <h5>Thêm</h5x>
-                    </button>
-                </div>
-            </form>
+                    <div class="col-md-4">
+                        <label for="book_title" class="form-label">Tiêu đề</label>
+                        <input type="text" name="book_title" class="form-control" id="book_title" placeholder="Tự Động Hóa PLC S7-1200 Với Tia Portal">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="book_author" class="form-label">Tác giả</label>
+                        <input type="text" name="book_author" class="form-control" id="book_author" placeholder="Trần Văn Hiếu">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="book_Category" class="form-label">Chủ đề</label>
+                        <input type="text" name="book_Category" class="form-control" id="book_Category" placeholder="Vừa học vừa chơi">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="book_descr" class="form-label">Miêu tả về sách</label>
+                        <input type="text" name="book_descr" class="form-control" id="book_descr" placeholder="Tự Động Hóa PLC S7-1200 ">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="book_price" class="form-label">Giá bán</label>
+                        <input type="text" name="book_price" class="form-control" id="book_price" placeholder="1200">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="publisherid" class="form-label">Nhà sản xuất</label>
+                        <input type="text" name="publisherid" class="form-control" id="publisherid" placeholder="Wrox">
+                    </div>
+                    <div class="col">
+                        <label for="avatar" class="form-label">Thay đổi ảnh</label>
+                        <input type="file" id="fileToUpload" name="fileToUpload" accept="images/*" class=" mb-3 form-control" value="chọn ảnh">
+                        <div class="preview mb-3">
+                            <div id="preview">
+                                <img src="#" hidden />
+                            </div>
+                            <div id="err"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="submit" name="submit" class="btn btn-outline-danger ">
+                            <h5>Thêm</h5x>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
