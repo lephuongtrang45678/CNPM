@@ -76,11 +76,7 @@ if (isset($_POST['submit'])) {
     $uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
 
-    // Kiểm tra xem tệp đã tồn tại chưa
-    if (file_exists($target_file)) {
-        echo "Xin lỗi, ảnh bạn đã tồn tại.";
-        $uploadOk = 0;
-    }
+    
 
     // kiểm tra kích cỡ ảnh
     if (
@@ -110,12 +106,13 @@ if (isset($_POST['submit'])) {
             echo "Xin lỗi, đã có lỗi tải lên tệp của bạn.";
         }
     }
-    // echo $avatar;
-    // update
-    require('constants.php');
+
+    $userid = $_SESSION['userid'] ;
+    $date_add = date("Y-m-d ");
+
     //2. SQL Query to Save the data into database
-    $sql = "INSERT INTO books_add(book_title, book_author, book_image, book_descr) 
-    VALUES ('$book_title','$book_author','$target_file','$book_descr')";
+    echo $sql = "INSERT INTO `books_add`(`book_ad_id`, `book_title`, `book_author`, `book_image`, `book_descr`, `userid`, `date_add`) 
+    VALUES (NULL,'$book_title','$book_author','$target_file','$book_descr','$userid','$date_add')";
 
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);
@@ -126,7 +123,6 @@ if (isset($_POST['submit'])) {
 
         //Create a Session Variable to Display Message
         $_SESSION['add'] = "<div class='danger'>thêm thành công</div>";
-        // header("location: add_book_table.php");
         header("Location:add_book_table.php");
 
     } else {

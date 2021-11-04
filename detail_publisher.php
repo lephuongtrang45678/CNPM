@@ -26,7 +26,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3 ms-5 text-center">
-                <img class="img-responsive img-thumbnail" src="img/img-index/<?php echo $row['book_image']; ?>">
+                <img class="img-responsive img-thumbnail" src="<?php echo $row['book_image']; ?>">
             </div>
             <div class="col-md-7">
                 <h4><?php echo $row['book_title']; ?></h4>

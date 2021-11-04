@@ -64,9 +64,9 @@ if (isset($_SESSION['cart_to_buy']) && (array_count_values($_SESSION['cart_to_bu
                     </div>
                 </div>
                 <div class="col-12 mt-2">
-                    <label for="city" class="control-label col-md-4">Thành phố</label>
+                    <label for="sdt" class="control-label col-md-4">Số điện thoại</label>
                     <div class="col-md-4  ">
-                        <input type="text" name="city" class="col-md-4" class="form-control">
+                        <input type="tel" name="sdt" class="col-md-4" class="form-control">
                     </div>
                 </div>
 
@@ -89,20 +89,20 @@ echo $userid = $_SESSION['userid'];
 
 if (isset($_POST['order'])) {
     $address = $_POST['address'];
-    $city = $_POST['city'];
+    $sdt = $_POST['sdt'];
 
-    echo $query = "UPDATE `users` SET `address`='$address',`city`='$city' WHERE `userid`='$userid'";
+    echo $query = "UPDATE `users` SET `address`='$address',`sdt`='$sdt' WHERE `userid`='$userid'";
     $result = mysqli_query($conn, $query);
 
     $date = date("Y-m-d ");
     $date_ship = date('Y-m-d', strtotime($date . ' + 5 days'));
     echo $sql2 = "INSERT INTO orders VALUES 
-			(NULL, '" . $userid . "', '" . $_SESSION['total_price_cart'] . "', '" . $date . "', '" . $date_ship . "', '" . $address . "', '" . $city . "', 'Đang xử lý')";
+			(NULL, '" . $userid . "', '" . $_SESSION['total_price_cart'] . "', '" . $date . "', '" . $date_ship . "', '" . $address . "', '" . $sdt . "', 'Đang xử lý')";
     $res2 = mysqli_query($conn, $sql2);
 
 
 
-    $sql = "SELECT orderid FROM orders WHERE orders.userid = '$userid' ORDER BY orderid DESC  ";
+    $sql = "SELECT orderid FROM orders WHERE orders.userid = '$userid'   ";
     $res = mysqli_query($conn, $sql);
     if (mysqli_num_rows($res) > 0) {
         $row = mysqli_fetch_assoc($res);
@@ -128,7 +128,7 @@ if (isset($_POST['order'])) {
     unset($_SESSION['cart_to_buy']);
 
     echo $_SESSION['success'] = "<div class='danger'>Thanh toán thành công đơn hàng của bạn.</div>";
-    header("Location:" . SITEURL . "check_cart.php");
+    // header("Location:" . SITEURL . "check_cart.php");
 }
 
 

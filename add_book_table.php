@@ -37,9 +37,10 @@ include('./header.php');
                             <tr>
                                 <th scope="row"><?php echo $i; ?> </th>
                                 <td><?= $row['book_title'] ?></td>
-                                <td><?= $row['book_author'] ?></td>
+                                <td style=" width:100px"> <?= $row['book_author'] ?></td>
                                 <td><?= $row['book_descr'] ?></td>
-                                <td><img src="<?= $row['book_image'] ?>" alt=""></td>
+                                <td><img src=" <?= $row['book_image'] ?>" alt="" style="width:  75px;">
+                                </td>
                         <?php
                             $i++;
                         }
