@@ -47,7 +47,7 @@ foreach ($_SESSION['cart_to_buy'] as $isbn => $qty) {
         $row = mysqli_fetch_assoc($result);
         $bookprice = $row['book_price'];
 
-        $sql_1 = "SELECT orderid FROM orders WHERE userid ='$userid'";
+        $sql_1 = "SELECT orderid FROM orders WHERE userid ='$userid' ORDER BY orderid DESC";
         $res_1 = mysqli_query($conn, $sql_1);
         if (mysqli_num_rows($res_1) > 0) {
             $row_1 = mysqli_fetch_assoc($res_1);
