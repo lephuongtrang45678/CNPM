@@ -24,17 +24,20 @@ $search = mysqli_real_escape_string($conn, $_POST['search']);
 
         //Check whether books available of not
         if ($count > 0) { ?>
-            //books Available
             <div class="books-menu-box">
                 <div class="row">
                     <?php while ($query_row = mysqli_fetch_assoc($res)) { ?>
-                        <div class="col-md-3 mb-5">
-                            <a href="book.php?bookisbn=<?php echo $query_row['book_isbn']; ?>" class="text-decoration-none text-dark">
-                                <img class="img-responsive img-thumbnail" src="./img/img-index/<?php echo $query_row['book_image']; ?>">
-                                <h5 class="mt-4 "><?php echo $query_row['book_title'] ?></h5>
-                                <div class=" ">$<?php echo $query_row['book_price'] ?></div>
-                                <a href="cart" class="btn btn-outline-danger">Thêm vào giỏ hàng</a>
-                            </a>
+                        <div class="col-md-3 mb-5 text-center">
+                            <div class="card" style="width: 14rem; height: 29rem;">
+                                <a href="book.php?bookisbn=<?php echo $query_row['book_isbn']; ?>" class="text-decoration-none text-dark">
+                                    <img src="<?php echo $query_row['book_image']; ?>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $query_row['book_title'] ?></h5>
+                                        <p class="card-text"><?php echo $query_row['book_price'] ?></p>
+                                    </div>
+                                </a>
+                            </div>
+
                         </div>
                     <?php } ?>
                 </div>
@@ -44,17 +47,17 @@ $search = mysqli_real_escape_string($conn, $_POST['search']);
             </div>
     </div>
 
-    <?php
-            } else { ?>
-        <div class='error mt-3'>Sách không tìm thấy.</div>
-        <a href="add_books.php" class="text-decoration-none text-dark">
-            <h5>Bạn có thể cho tôi thêm thông tin sách bạn muốn có? <i class="fas fa-folder-plus"></i></h5>
-        </a>
-    <?php }
+<?php
+        } else { ?>
+    <div class='error mt-3'>Sách không tìm thấy.</div>
+    <a href="add_books.php" class="text-decoration-none text-dark">
+        <h5>Bạn có thể cho tôi thêm thông tin sách bạn muốn có? <i class="fas fa-folder-plus"></i></h5>
+    </a>
+<?php }
 
-    ?>
+?>
 
-    </div>
+</div>
 
 </section>
 

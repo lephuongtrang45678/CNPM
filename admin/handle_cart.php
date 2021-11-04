@@ -47,6 +47,7 @@ include('./header.php');
                             <td><?php echo $row['orderid']; ?> </td>
                             <td><?php echo $row['amount']; ?> </td>
                             <td><?php echo $row['date']; ?> </td>
+                            <td><?php echo $row['date_ship']; ?> </td>
                             <td><?php echo $row['order_status']; ?> </td>
                             <td><a href="detail_cart.php?orderid=<?php echo $row['orderid'] ?>" class="text-decotion-none text-danger "><i class="fas fa-info-circle"></i></a></td>
 
