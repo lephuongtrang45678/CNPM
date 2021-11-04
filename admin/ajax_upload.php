@@ -1,7 +1,7 @@
 <?php
 
 $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp', 'pdf', 'doc', 'ppt'); // valid extensions
-$path = '../img/img-index/'; // upload directory
+$path = './img/'; // upload directory
 
 if ($_FILES['fileToUpload']) {
     $img = $_FILES['fileToUpload']['name'];

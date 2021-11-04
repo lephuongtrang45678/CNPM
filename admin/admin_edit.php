@@ -93,20 +93,17 @@ ob_start();
 		$book_price = $_POST['book_price'];
 		$publisherid = $_POST['publisherid'];
 
-		
-		$target_dir = "img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
+		$target_dir = "../img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
 		$uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
 		$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
 
-		// Kiểm tra xem tệp đã tồn tại chưa
-		if (file_exists($target_file)) {
-			echo "Xin lỗi, ảnh bạn đã tồn tại.";
-			$uploadOk = 0;
-		}
+
 
 		// kiểm tra kích cỡ ảnh
-		if ($_FILES["fileToUpload"]["size"] > 500000) {
+		if (
+			$_FILES["fileToUpload"]["size"] > 500000
+		) {
 			echo "Xin lỗi,cỡ ảnh bạn quá lớn.";
 			$uploadOk = 0;
 		}
@@ -121,7 +118,8 @@ ob_start();
 		}
 
 		// kiểm tra nếu $uploadOk = 0
-		if ($uploadOk == 0) {
+		if ($uploadOk == 0
+		) {
 			echo "Xin lỗi, tập tin của bạn đã không được tải lên.";
 			// Hoàn thành tải lên tập tin PHP Script
 		} else {
@@ -131,6 +129,8 @@ ob_start();
 				echo "Xin lỗi, đã có lỗi tải lên tệp của bạn.";
 			}
 		}
+		
+		
 		// echo $avatar;
 		// update
 		$sql = "SELECT * FROM books WHERE book_isbn='$book_isbn' ";
