@@ -45,6 +45,7 @@ include('header.php');
                             <td><?php echo $email ?></td>
                             <td><?php echo  $hotline ?></td>
                             <td><?php echo $location ?></td>
+							<td><a href="admin_edit_publisher.php?publisherid=<?php echo $row['publisherid']; ?>"><i class="fas fa-edit text-danger"></i></a></td>
 
                         </tr>
 
