@@ -38,19 +38,7 @@ ob_start();
 					<label for="book_author" class="form-label">Tác giả</label>
 					<input type="" name="book_author" class="form-control" id="book_author" value="<?php echo $row_2['book_author']; ?>">
 				</div>
-				<div class="col">
-					<label for="avatar" class="form-label">Thay đổi ảnh</label>
-					<div class="mb-3">
-						<img src="<?php echo $row_2['book_image']; ?>" alt="" style="width : 10%">
-					</div>
-					<input type="file" id="fileToUpload" name="fileToUpload" accept="images/*" class=" mb-3 form-control" value="chọn ảnh">
-					<div class="preview mb-3">
-						<div id="preview">
-							<img src="#" hidden />
-						</div>
-						<div id="err"></div>
-					</div>
-				</div>
+
 				<div class="col-md-4">
 					<label for="book_Category" class="form-label">Chủ đề</label>
 					<input type="" name="book_Category" class="form-control" id="book_Category" value="<?php echo $row_2['book_Category']; ?>">
@@ -66,6 +54,20 @@ ob_start();
 				<div class="col-md-4">
 					<label for="publisherid" class="form-label">Nhà sản xuất</label>
 					<input type="" name="publisherid" class="form-control" id="publisherid" value="<?php echo $row_2['publisherid']; ?>">
+				</div>
+				<div class="col-12">
+					<label for="avatar" class="form-label">Thay đổi ảnh</label>
+					<div class="mb-3">
+						<img src="../<?php echo $row_2['book_image']; ?>" alt="" class="img-fluid" style="width: 18%;">
+
+					</div>
+					<input type="file" id="fileToUpload" name="fileToUpload" accept="images/*" class=" mb-3 form-control" value="chọn ảnh">
+					<div class="preview mb-3">
+						<div id="preview">
+							<img src="#" hidden />
+						</div>
+						<div id="err"></div>
+					</div>
 				</div>
 				<div class="col-12 d-flex justify-content-center mt-3">
 					<button type="submit" name="submit" class="btn btn-outline-danger ">
@@ -93,7 +95,7 @@ ob_start();
 		$publisherid = $_POST['publisherid'];
 
 
-		$target_dir = "img/"; //chỉ định thư mục nơi tệp sẽ được đặt
+		$target_dir = "img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
 		$uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
 		$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
@@ -132,10 +134,10 @@ ob_start();
 		}
 		// echo $avatar;
 		// update
-		echo $sql = "SELECT * FROM books WHERE book_isbn='$book_isbn' ";
+		$sql = "SELECT * FROM books WHERE book_isbn='$book_isbn' ";
 		$res = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($res) > 0) {
-			$sql2 = "UPDATE books SET book_isbn='$book_isbn',book_title='$book_title',book_author='$book_author',book_image='$target_dir',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' ";
+			echo $sql2 = "UPDATE books SET book_title='$book_title',book_author='$book_author',book_image='$target_file',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' WHERE book_isbn='$book_isbn' ";
 			$res2 = mysqli_query($conn, $sql2);
 			if ($res2 == true) {
 				echo "ok";
@@ -152,8 +154,7 @@ ob_start();
 				//Redirect the User
 				header('location:admin_edit.php');
 			}
-		}
-		else{
+		} else {
 			echo "sai";
 		}
 	}
