@@ -1,40 +1,68 @@
-<?php
-	include("./header.php");
-	$query = "SELECT * FROM publisher ORDER BY publisherid";
-	$result = mysqli_query($conn, $query);
-	if(!$result){
-		echo "Can't retrieve data " . mysqli_error($conn);
-		exit;
-	}
-	if(mysqli_num_rows($result) == 0){
-		echo "Empty publisher ! Something wrong! check again";
-		exit;
-	}
+<?php 
+include('header.php');
 ?>
-	<p class="lead">Danh sách nhà xuất bản</p>
-	<ul>
-	<?php 
-		while($row = mysqli_fetch_assoc($result)){
-			$count = 0; 
-			$query = "SELECT publisherid FROM books";
-			$result2 = mysqli_query($conn, $query);
-			if(!$result2){
-				echo "Can't retrieve data " . mysqli_error($conn);
-				exit;
-			}
-			while ($pubInBook = mysqli_fetch_assoc($result2)){
-				if($pubInBook['publisherid'] == $row['publisherid']){
-					$count++;
-				}
-			}
-	?>
-		<li>
-			<span class="badge"><?php echo $count; ?></span>
-		    <a href="publisher_book.php?pubid=<?php echo $row['publisherid']; ?>"><?php echo $row['publisher_name']; ?></a>
-		</li>
-	<?php } ?>
-	</ul>
+
+<div class="ad-index">
+    <div class="ad-book">
+        <div class="row">
+            <h1 class="text-center ad-title">
+                Quản lý nhà sản xuất
+            </h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            
+                            <th scope="col">Mã NSX</th>
+                            <th scope="col">Tên NSX</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Hotline</th>
+                            <th scope="col">Địa chỉ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php 
+                        $sql="select * from publisher";
+                        
+                        $result = mysqli_query($conn, $sql);
+                            if(mysqli_num_rows($result)>0){ 
+                                while($row=mysqli_fetch_assoc($result)){
+                                    $publisherid = $row['publisherid'];
+                                    $publisher_name = $row['publisher_name'];
+                                    $email= $row['email'];
+                                    $hotline = $row['hotline'];
+                                    $location = $row['location'];
+                                    ?>
+                    
+                         
+                            <td><?php echo  $publisherid ?></td>
+                            <td><?php echo $publisher_name ?></td>
+                            <td><?php echo $email ?></td>
+                            <td><?php echo  $hotline ?></td>
+                            <td><?php echo $location ?></td>
+
+                        </tr>
+
+                        <?php
+                                }
+                            }
+                          
+                            else 
+                            echo $sql;
+                        ?>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
-	mysqli_close($conn);
-	require "footer.php";
+include('footer.php');
 ?>
