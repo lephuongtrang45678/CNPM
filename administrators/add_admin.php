@@ -52,13 +52,11 @@ if (isset($_POST['submit'])) {
 
     //1. Get the DAta from Form
     $name = $_POST['name'];
-    $pass = $_POST['pass'];
+    $pass = md5($_POST['pass']);
 
-    $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
 
     //2. SQL Query to Save the data into database
-    $sql = "INSERT INTO admin(name, pass) 
-    VALUES ('$name','$pass_hash')";
+    $sql = "INSERT INTO `admin`(`idAd`, `name`, `pass`) VALUES (NULL,'$name','$pass')";
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);
 

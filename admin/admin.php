@@ -38,7 +38,7 @@ $title = "Administration section";
     session_start();
     if(isset($_POST['submit'])){
         $email = $_POST['name'];
-        $pass = $_POST['pass'];
+        $pass = md5($_POST['pass']);
         //kết nối
         include('../constants.php');
      

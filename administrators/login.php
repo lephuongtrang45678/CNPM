@@ -11,17 +11,6 @@ include('../constants.php')
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5">
                     <h5 class="card-title text-center mb-5 fw-light fs-5 text-danger fw-bold fs-3">ĐĂNG NHẬP</h5>
-                    <?php
-                    if (isset($_SESSION['login'])) {
-                        echo $_SESSION['login'];
-                        unset($_SESSION['login']);
-                    }
-
-                    if (isset($_SESSION['no-login'])) {
-                        echo $_SESSION['no-login'];
-                        unset($_SESSION['no-login']);
-                    }
-                    ?>
                     <form method="post">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="name" id="email" value="trang">
@@ -61,22 +50,20 @@ include('../constants.php')
 <?php
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    
     $pass = md5($_POST['pass']);
 
 
 
-    $sql = "SELECT * FROM administrators WHERE name='$name' and pass = '$pass'";
+    echo $sql = "SELECT * FROM administrators WHERE name='$name' and pass = '$pass'";
     $res = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($res) > 0) {
         $row = mysqli_fetch_assoc($res);
         $pass_save = $row['pass'];
         if ($pass == $pass_save) {
-            $_SESSION['login'] = "<div class='danger'>dang nhap thanh cong.</div>";
-            $_SESSION['user'] = $name;
+            $_SESSION['user_administrators'] = $name;
+            header("Location:" . SITEURL . "administrators/index.php");
 
-            header("Location:index.php");
         } else {
             $response = 'mat khau sai';
             header("Location:" . SITEURL . "administrators/login.php?response=$response");

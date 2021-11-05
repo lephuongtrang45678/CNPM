@@ -1,11 +1,7 @@
 <?php
 include('../constants.php');
-include('./check_login.php');
+include('check_login.php');
 
-if (isset($_SESSION['login'])) {
-    echo $_SESSION['login'];
-    unset($_SESSION['login']);
-}
 
 ?>
 <!DOCTYPE html>
@@ -29,17 +25,9 @@ if (isset($_SESSION['login'])) {
                 <a href="index.php" class=""><img src="https://bookbuy.vn/Images/frontend/base/logo-new.png" alt=""></a>
             </div>
             <div class="col-4 text-end pe-4 mt-4">
-                <?php
-                if (isset($_SESSION['user'])) { ?>
-                    <div class="nav-item">
-                        <a href="./logout.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng Xuất </a></a>
-                    </div>
-                <?php } else { ?>
-                    <div class="nav-item">
-                        <a href="./login.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng nhập </a></a>
-                    </div>
-                <?php }
-                ?>
+                <div class="nav-item">
+                    <a href="./logout.php" class="nav-link text-decoration-none text-muted "><i class="fas fa-sign-in-alt"></i> Đăng Xuất </a></a>
+                </div>
             </div>
         </div>
     </div>
@@ -70,3 +58,7 @@ if (isset($_SESSION['login'])) {
             </div>
         </div>
     </div>
+
+    <?php 
+    include('./footer.php');
+    ?>

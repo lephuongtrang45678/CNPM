@@ -88,7 +88,7 @@ include("index.php");
         $status = $_POST['status'];
 
 
-        $target_dir = "img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
+        $target_dir = "img/img_user/"; //chỉ định thư mục nơi tệp sẽ được đặt
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
         $uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 

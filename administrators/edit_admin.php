@@ -12,11 +12,11 @@ include("index.php");
         <div class="col text-end"><a href="./index.php"><button class="btn btn-outline-danger" type="submit">Hủy</button></a></div>
     </div>
     <?php
-    if (isset($_GET['name'])) {
-        $name = $_GET['name'];
+    if (isset($_GET['idAd'])) {
+        $idAd = $_GET['idAd'];
     }
 
-    $sql_2 = " SELECT * FROM admin WHERE name = '$name'";
+    $sql_2 = " SELECT * FROM admin WHERE idAd  = '$idAd'";
     $res_2 = mysqli_query($conn, $sql_2);
 
     $row_2 = mysqli_fetch_assoc($res_2);
@@ -32,10 +32,11 @@ include("index.php");
                 </div>
                 <div class="col-md-4">
                     <label for="pass" class="form-label">password</label>
-                    <input type="password" name="pass" class="form-control" id="pass" ">
+                    <input type="password" name="pass" class="form-control" id="pass" value="<?php echo $row_2['pass'] ?>">
                 </div>
+                <input type="hidden" name="idAd" class="form-control" id="idAd" value="<?php echo $row_2['idAd'] ?>">
 
-                <div class="col-12 d-flex justify-content-center">
+                <div class=" col-12 d-flex justify-content-center">
                     <button type="submit" name="submit" class="btn btn-outline-danger ">
                         <h5>Sửa</h5x>
                     </button>
@@ -52,21 +53,21 @@ include("index.php");
         //echo "CLicked";
 
         //1. Get the DAta from Form
+        $idAd = $_POST['idAd'];
         $name = $_POST['name'];
-        $pass = $_POST['pass'];
+        $pass = md5($_POST['pass']);
 
 
 
-       
 
-        $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
 
-        $sql = "SELECT * FROM admin WHERE name='$name' and pass = '$pass_hash'";
+
+        $sql = "SELECT * FROM admin WHERE idAd = '$idAd' ";
         $res = mysqli_query($conn, $sql);
         if ($res == true) {
             $count = mysqli_num_rows($res);
             if ($count == 1) {
-                $sql2 = "UPDATE admin SET name='$name',pass='$pass_hash' ";
+                $sql2 = "UPDATE admin SET name='$name',pass='$pass' WHERE idAd = '$idAd'";
                 $res2 = mysqli_query($conn, $sql2);
                 if ($res2 == true) {
                     //Display Succes Message
