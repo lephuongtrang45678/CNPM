@@ -16,7 +16,7 @@ if (!$result) {
             <div class="col-md-3 mb-5 text-center">
                 <a href="book.php?bookisbn=<?php echo $query_row['book_isbn']; ?>" class="text-decoration-none text-dark">
                     <div class="card" style="width: 13rem; height:29rem">
-                        <img src="<?php echo $query_row['book_image']; ?>" class="card-img-top" alt="...">
+                        <img src="<?php echo $query_row['book_image']; ?>" class="card-img-top" style="height: 75%;">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $query_row['book_title'] ?></h5>
                             <p class="card-text"><?php echo $query_row['book_author'] ?></p>

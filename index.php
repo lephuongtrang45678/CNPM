@@ -172,7 +172,7 @@ include('header.php')
                                     <div class="col-md-3 mb-5 text-center">
                                         <a href="book.php?bookisbn=<?php echo $row['book_isbn']; ?>" class="text-decoration-none text-dark">
                                             <div class="card" style="height: 23rem;">
-                                                <img src="<?php echo $row['book_image']; ?>" class="card-img-top" alt="...">
+                                                <img src="<?php echo $row['book_image']; ?>" class="card-img-top" style="height: 75%;">
                                                 <div class="card-body">
                                                     <h5 class="card-title"><?php echo $row['book_title'] ?></h5>
                                                 </div>

@@ -45,7 +45,7 @@ include('header.php');
                                 <td><?php echo $row['orderid']; ?> </td>
                                 <td><?php echo $row['book_title']; ?> </td>
                                 <td><?php echo $row['book_author']; ?> </td>
-                                <td><img src="<?php echo $row['book_image']; ?> " alt=""></td>
+                                <td><img src="<?php echo $row['book_image']; ?> " style="width: 10rem;"></td>
                                 <td><?php echo $row['quantity']; ?> </td>
                                 <td><?php echo $row['item_price']; ?> </td>
 
