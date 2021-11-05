@@ -98,6 +98,8 @@ ob_start();
 		$uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
 		$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
 
+		$target_dir_2 = "img/img-index/";
+		$target_file_2 = $target_dir_2 . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
 
 
 		// kiểm tra kích cỡ ảnh
@@ -135,7 +137,7 @@ ob_start();
 		$sql = "SELECT * FROM books WHERE book_isbn='$book_isbn' ";
 		$res = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($res) > 0) {
-			$sql2 = "UPDATE books SET book_title='$book_title',book_author='$book_author',book_image='$target_file',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' WHERE book_isbn='$book_isbn' ";
+			$sql2 = "UPDATE books SET book_title='$book_title',book_author='$book_author',book_image='$target_file_2',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' WHERE book_isbn='$book_isbn' ";
 			$res2 = mysqli_query($conn, $sql2);
 			if ($res2 == true) {
 				echo "ok";
