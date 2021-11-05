@@ -190,9 +190,9 @@ if (isset($_POST['submit'])) {
                 $mail->Port = 587; // TCP port to connect to
                 $mail->CharSet = 'UTF-8';
                 //Recipients
-                $mail->setFrom('lephuongtrang45678@gmail.com', 'DANH BẠ THỦY LỢI');
+                $mail->setFrom('lephuongtrang45678@gmail.com', 'Mua Sách Mới, Sách Hot, Sách Hay Nên Đọc Online');
 
-                $mail->addReplyTo('lephuongtrang45678@gmail.com', 'DANH BẠ THỦY LỢI');
+                $mail->addReplyTo('lephuongtrang45678@gmail.com', 'Mua Sách Mới, Sách Hot, Sách Hay Nên Đọc Online');
 
                 $mail->addAddress($email); // Add a recipient
 

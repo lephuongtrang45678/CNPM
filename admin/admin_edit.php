@@ -129,14 +129,13 @@ ob_start();
 				echo "Xin lỗi, đã có lỗi tải lên tệp của bạn.";
 			}
 		}
-		
-		
+
 		// echo $avatar;
 		// update
 		$sql = "SELECT * FROM books WHERE book_isbn='$book_isbn' ";
 		$res = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($res) > 0) {
-			echo $sql2 = "UPDATE books SET book_title='$book_title',book_author='$book_author',book_image='$target_file',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' WHERE book_isbn='$book_isbn' ";
+			$sql2 = "UPDATE books SET book_title='$book_title',book_author='$book_author',book_image='$target_file',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' WHERE book_isbn='$book_isbn' ";
 			$res2 = mysqli_query($conn, $sql2);
 			if ($res2 == true) {
 				echo "ok";

@@ -62,18 +62,17 @@ ob_start();
                 <a href="index.php"><img src="https://bookbuy.vn/Images/frontend/base/logo-new.png" alt=""></a>
             </div>
             <div class="col-5">
-
-
                 <form action="search.php" method="POST" class="d-flex boder">
-                    <select class="form-select w-25 me-2" aria-label="">
-                        <option selected>Tất cả</option>
-                        <option value="1">Sách - Truyện tranh</option>
-                        <option value="2">CD - DVD </option>
-                        <option value="3">Quà tặng </option>
-                        <option value="3">Dụng cụ vẽ - VPP </option>
-                        <option value="3">Công nghệ </option>
-                        <option value="3">Vật dụng gia đình </option>
-                        <option value="3">Làm Đẹp - Sức Khỏe </option>
+                    <select class="form-select w-50 me-2" aria-label="" name="book_isbn">
+                        <?php
+                        $sql = "SELECT distinct book_Category FROM books";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<option value ="' . $row['book_isbn'] . '" selected>' . $row['book_Category'] . '</option>';
+                            }
+                        }
+                        ?>
                     </select>
                     <input type="search" name="search" class="form-control" placeholder="Tìm kiếm sách .." required>
                     <input type="submit" name="submit" value="Tìm kiếm" class="btn btn-outline-danger">

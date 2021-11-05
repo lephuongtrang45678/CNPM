@@ -38,6 +38,7 @@ if (!$row) {
                         <tr>
                             <th scope="col">Mã sách</th>
                             <th scope="col">Tác giả</th>
+                            <th scope="col">Thể loại</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Giá</th>
                         </tr>
@@ -46,6 +47,7 @@ if (!$row) {
                         <tr>
                             <th scope="row"><?= $row['book_isbn'] ?></th>
                             <td><?= $row['book_author'] ?></td>
+                            <td><?= $row['book_Category'] ?></td>
                             <td><?= $row['publisherid'] ?></td>
                             <td><?= $row['book_price'] ?></td>
                         </tr>
