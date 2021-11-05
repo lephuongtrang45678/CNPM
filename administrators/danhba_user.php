@@ -49,13 +49,13 @@ include('index.php');
                         <td><?php echo $row['first_name']; ?> </td>
                         <td><?php echo $row['last_name']; ?> </td>
                         <td><?php echo $row['email']; ?> </td>
-                        <td><?php echo $row['password']; ?> </td>
+                        <td style="width: 50rem;"><?php echo $row['password']; ?> </td>
                         <td><?php echo $row['status']; ?> </td>
                         <td><a href="edit_user.php?userid=<?php echo $row['userid']; ?>"><i class="fas fa-edit text-danger"></i></a></td>
                         <td><a href="delete_user.php?userid=<?php echo $row['userid']; ?>"><i class="fas fa-trash text-danger"></i></a></td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <img src="<?php echo $row['avatar']; ?>" alt="" style=" width: 50%;" ">
+                                <img src="<?php echo $row['avatar']; ?>" alt="" style=" width: 100%;" ">
                                     </div>
 
                                 </td>

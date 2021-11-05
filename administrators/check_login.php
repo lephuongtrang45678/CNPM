@@ -2,7 +2,7 @@
 
 
 //CHeck whether the user is logged in or not
-if (!isset($_SESSION['user'])) //IF user session is not set
+if (!isset($_SESSION['user_administrators'])) //IF user session is not set
 {
     //User is not logged in
     $_SESSION['no-login'] = "<div class='error text-center'>Hãy đăng nhập.</div>";
