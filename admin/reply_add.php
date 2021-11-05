@@ -102,6 +102,8 @@ if (isset($_POST['submit'])) {
     $uploadOk = 1; //chưa được sử dụng (sẽ được sử dụng sau)
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); //giữ phần mở rộng tệp của tệp 
 
+    $target_dir_2 = "img/img-index/";
+    $target_file_2 = $target_dir_2 . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
 
 
     // kiểm tra kích cỡ ảnh
@@ -137,7 +139,7 @@ if (isset($_POST['submit'])) {
     // update
     //2. SQL Query to Save the data into database
     $sql1 = "INSERT INTO `books`(`book_isbn`, `book_title`, `book_author`, `book_image`, `book_Category`, `book_descr`, `book_price`, `publisherid`) 
-    VALUES ('$book_isbn1','$book_title1','$book_author1','$target_dir1','$book_Category1','$book_descr1','$book_price1','$publisherid1')";
+    VALUES ('$book_isbn1','$book_title1','$book_author1','$target_dir_2','$book_Category1','$book_descr1','$book_price1','$publisherid1')";
     //3. Executing Query and Saving Data into Datbase
     $res1 = mysqli_query($conn, $sql1);
 
