@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
     // update
     //2. SQL Query to Save the data into database
     $sql = "INSERT INTO `books`(`book_isbn`, `book_title`, `book_author`, `book_image`, `book_Category`, `book_descr`, `book_price`, `publisherid`) 
-    VALUES ('$book_isbn','$book_title','$book_author','$target_dir','$book_Category','$book_descr','$book_price','$publisherid')";
+    VALUES ('$book_isbn','$book_title','$book_author','$target_file','$book_Category','$book_descr','$book_price','$publisherid')";
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);
 

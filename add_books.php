@@ -1,6 +1,7 @@
 <?php
 ob_start();
 include("header.php");
+include('./check-login.php');
 ?>
 
 <div class="container-fluid">
