@@ -55,9 +55,9 @@ if (isset($_SESSION['cart_to_buy']) && (array_count_values($_SESSION['cart_to_bu
                     <tr>
                         <td><?php echo $row['book_title']; ?></td>
                         <td><?php echo $row['book_author']; ?></td>
-                        <td><?php echo "$" . $row['book_price']; ?></td>
+                        <td><?php echo "đ" . $row['book_price']; ?></td>
                         <td><input type="text" value="<?php echo $qty; ?>" size="2" name="<?php echo $isbn; ?>"></td>
-                        <td><?php echo "$" . $qty * $row['book_price']; ?></td>
+                        <td><?php echo "đ" . $qty * $row['book_price']; ?></td>
                     </tr>
             <?php }
             } ?>
@@ -67,7 +67,7 @@ if (isset($_SESSION['cart_to_buy']) && (array_count_values($_SESSION['cart_to_bu
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
                 <th><?php echo $_SESSION['total_items_cart']; ?></th>
-                <th><?php echo "$" . $_SESSION['total_price_cart']; ?></th>
+                <th><?php echo "đ" . $_SESSION['total_price_cart']; ?></th>
             </tr>
         </table>
         <div class="row">
@@ -86,7 +86,6 @@ if (isset($_SESSION['cart_to_buy']) && (array_count_values($_SESSION['cart_to_bu
 
 
 <?php
-
     // if save change button is clicked , change the qty of each bookisbn
     if (isset($_POST['save_change'])) {
         foreach ($_SESSION['cart_to_buy'] as $isbn => $qty) {
