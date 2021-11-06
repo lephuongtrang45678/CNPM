@@ -4,11 +4,11 @@
 include('../constants.php');
 
 // 1. get the name of admin to be deleted
-$name = $_GET['name'];
-$pass = $_GET['pass'];
+$idAd  = $_GET['idAd'];
+
 
 //2. Create SQL Query to Delete 
-$sql = "DELETE FROM admin WHERE name='$name' and pass='$pass'";
+echo $sql = "DELETE FROM admin WHERE idAd  = '$idAd'";
 
 //Execute the Query
 $res = mysqli_query($conn, $sql);
