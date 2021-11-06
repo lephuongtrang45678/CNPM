@@ -9,23 +9,12 @@ ob_start();
         </div>
         <div class="col text-end"><a href="./admin_book.php"><button class="btn btn-outline-danger" type="submit">Hủy</button></a></div>
     </div>
-    <?php
-
-    if (isset($_SESSION['add'])) //Checking whether the SEssion is Set of Not
-    {
-        echo $_SESSION['add']; //Display the SEssion Message if SEt
-        unset($_SESSION['add']); //Remove Session Message
-    }
-
-
-    ?>
     <div class="row">
         <div class="col border p-3 rounded-2 mt-3">
             <form method="POST" class="row g-3 " enctype="multipart/form-data">
                 <div class="col-md-4">
-                    <label for="book_isbn" class="form-label"></label>
+                    <label for="book_isbn" class="form-label">Mã vạch</label>
                     <input type="text" name="book_isbn" class="form-control" id="book_isbn" placeholder="978-0-321-94786-4">
-                    <div class="text-muted"><small>Mã vạch</small></div>
                 </div>
                 <div class="col-md-4">
                     <label for="book_title" class="form-label">Tiêu đề</label>
@@ -50,6 +39,10 @@ ob_start();
                 <div class="col-md-4">
                     <label for="publisherid" class="form-label">Nhà sản xuất</label>
                     <input type="text" name="publisherid" class="form-control" id="publisherid" placeholder="Wrox">
+                </div>
+                <div class="col-md-4">
+                    <label for="idAd" class="form-label">Mã Admin</label>
+                    <input type="text" name="idAd" class="form-control" id="idAd" placeholder="2">
                 </div>
                 <div class="col">
                     <label for="avatar" class="form-label">Thay đổi ảnh</label>
@@ -93,6 +86,7 @@ if (isset($_POST['submit'])) {
     $book_descr = $_POST['book_descr'];
     $book_price = $_POST['book_price'];
     $publisherid = $_POST['publisherid'];
+    $idAd = $_POST['idAd'];
 
 
     $target_dir = "../img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
@@ -136,8 +130,8 @@ if (isset($_POST['submit'])) {
     // echo $avatar;
     // update
     //2. SQL Query to Save the data into database
-    $sql = "INSERT INTO `books`(`book_isbn`, `book_title`, `book_author`, `book_image`, `book_Category`, `book_descr`, `book_price`, `publisherid`) 
-    VALUES ('$book_isbn','$book_title','$book_author','$target_file_2','$book_Category','$book_descr','$book_price','$publisherid')";
+    $sql = "INSERT INTO `books`(`book_isbn`, `book_title`, `book_author`, `book_image`, `book_Category`, `book_descr`, `book_price`, `publisherid`, `idAd`) 
+    VALUES ('$book_isbn','$book_title','$book_author','$target_file_2','$book_Category','$book_descr','$book_price','$publisherid','$idAd' )";
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);
 

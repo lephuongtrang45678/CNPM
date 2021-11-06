@@ -34,6 +34,10 @@ include("index.php");
                     <label for="pass" class="form-label">password</label>
                     <input type="password" name="pass" class="form-control" id="pass" value="<?php echo $row_2['pass'] ?>">
                 </div>
+                <div class="col-md-4">
+                    <label for="id_Addministrators" class="form-label">Mã Addministrators</label>
+                    <input type="password" name="id_Addministrators" class="form-control" id="id_Addministrators" value="<?php echo $row_2['id_Addministrators'] ?>">
+                </div>
                 <input type="hidden" name="idAd" class="form-control" id="idAd" value="<?php echo $row_2['idAd'] ?>">
 
                 <div class=" col-12 d-flex justify-content-center">
@@ -56,6 +60,7 @@ include("index.php");
         $idAd = $_POST['idAd'];
         $name = $_POST['name'];
         $pass = md5($_POST['pass']);
+        $id_Addministrators = $_POST['id_Addministrators'];
 
 
 
@@ -67,7 +72,7 @@ include("index.php");
         if ($res == true) {
             $count = mysqli_num_rows($res);
             if ($count == 1) {
-                $sql2 = "UPDATE admin SET name='$name',pass='$pass' WHERE idAd = '$idAd'";
+                $sql2 = "UPDATE admin SET name='$name',pass='$pass', id_Addministrators='$id_Addministrators' WHERE idAd = '$idAd'";
                 $res2 = mysqli_query($conn, $sql2);
                 if ($res2 == true) {
                     //Display Succes Message

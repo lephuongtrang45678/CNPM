@@ -19,6 +19,7 @@ include('index.php');
                     <th scope="col">STT</th>
                     <th scope="col">ID người quản lý</th>
                     <th scope="col">Tên người quản lý</th>
+                    <th scope="col">Mã người quản trị</th>
                     <th scope="col"> Mật khẩu</th>
                     <th scope="col"> sửa</th>
                     <th scope="col"> Xóa</th>
@@ -45,6 +46,7 @@ include('index.php');
                             <th scope="row"><?php echo $i; ?> </th>
                             <td><?php echo $row['idAd']; ?> </td>
                             <td><?php echo $row['name']; ?> </td>
+                            <td><?php echo $row['id_Addministrators']; ?> </td>
                             <td><?php echo $row['pass']; ?> </td>
                             <td><a href="edit_admin.php?idAd=<?php echo $row['idAd']; ?>"><i class="fas fa-edit text-danger"></i></a></td>
                             <td><a href="delete_admin.php?idAd=<?php echo $row['idAd']; ?>"><i class="fas fa-trash text-danger"></i></a></td>

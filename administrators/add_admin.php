@@ -23,12 +23,16 @@ include("index.php");
         <div class="col border p-3 rounded-2 mt-3">
             <form method="POST" class="row g-3 " enctype="multipart/form-data">
                 <div class="col-md-4">
-                    <label for="name" class="form-label">Mã người dùng</label>
+                    <label for="name" class="form-label">Tên người dùng</label>
                     <input type="" name="name" class="form-control" id="name" value="admin">
                 </div>
                 <div class="col-md-4">
                     <label for="pass" class="form-label">password</label>
                     <input type="password" name="pass" class="form-control" id="pass">
+                </div>
+                <div class="col-md-4">
+                    <label for="id_Addministrators " class="form-label">Mã Addministrators </label>
+                    <input type="" name="id_Addministrators " class="form-control" id="id_Addministrators " value="1">
                 </div>
                 <div class="col-12 d-flex justify-content-center">
                     <button type="submit" name="submit" class="btn btn-outline-danger ">
@@ -53,10 +57,10 @@ if (isset($_POST['submit'])) {
     //1. Get the DAta from Form
     $name = $_POST['name'];
     $pass = md5($_POST['pass']);
+    $id_Addministrators = $_POST['id_Addministrators'];
 
 
-    //2. SQL Query to Save the data into database
-    $sql = "INSERT INTO `admin`(`idAd`, `name`, `pass`) VALUES (NULL,'$name','$pass')";
+    echo $sql = "INSERT INTO `admin`(`idAd`, `name`, `pass`, `id_Addministrators`) VALUES (NULL,'$name','$pass', '$id_Addministrators')";
     //3. Executing Query and Saving Data into Datbase
     $res = mysqli_query($conn, $sql);
 

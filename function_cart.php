@@ -1,19 +1,6 @@
 <?php
 
-	
 
-	function getOrderId($conn, $userid)
-	{
-		
-		$query = "SELECT orderid FROM orders WHERE userid = '$userid'";
-		$result = mysqli_query($conn, $query);
-		if (!$result) {
-			echo "retrieve data failed!" . mysqli_error($conn);
-			exit;
-		}
-		$row = mysqli_fetch_assoc($result);
-		return $row['orderid'];
-	}
 
 
 	function getbookprice($isbn)

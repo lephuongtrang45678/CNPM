@@ -68,6 +68,10 @@ ob_start();
 					<label for="publisherid" class="form-label">Nhà sản xuất</label>
 					<input type="" name="publisherid" class="form-control" id="publisherid" value="<?php echo $row_2['publisherid']; ?>">
 				</div>
+				<div class="col-md-4">
+					<label for="idAd" class="form-label">Mã Admin</label>
+					<input type="" name="idAd" class="form-control" id="idAd" value="<?php echo $row_2['idAd']; ?>">
+				</div>
 				<div class="col-12 d-flex justify-content-center mt-3">
 					<button type="submit" name="submit" class="btn btn-outline-danger ">
 						<h5>Sửa</h5x>
@@ -92,6 +96,7 @@ ob_start();
 		$book_descr = $_POST['book_descr'];
 		$book_price = $_POST['book_price'];
 		$publisherid = $_POST['publisherid'];
+		$idAd  = $_POST['idAd'];
 
 		$target_dir = "../img/img-index/"; //chỉ định thư mục nơi tệp sẽ được đặt
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //chỉ định đường dẫn của tệp sẽ được tải lên
@@ -120,7 +125,8 @@ ob_start();
 		}
 
 		// kiểm tra nếu $uploadOk = 0
-		if ($uploadOk == 0
+		if (
+			$uploadOk == 0
 		) {
 			echo "Xin lỗi, tập tin của bạn đã không được tải lên.";
 			// Hoàn thành tải lên tập tin PHP Script
@@ -137,7 +143,7 @@ ob_start();
 		$sql = "SELECT * FROM books WHERE book_isbn='$book_isbn' ";
 		$res = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($res) > 0) {
-			$sql2 = "UPDATE books SET book_title='$book_title',book_author='$book_author',book_image='$target_file_2',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid' WHERE book_isbn='$book_isbn' ";
+			$sql2 = "UPDATE books SET book_title='$book_title',book_author='$book_author',book_image='$target_file_2',book_Category='$book_Category',book_descr='$book_descr',book_price='$book_price',publisherid='$publisherid', idAd='$idAd' WHERE book_isbn='$book_isbn' ";
 			$res2 = mysqli_query($conn, $sql2);
 			if ($res2 == true) {
 				echo "ok";
