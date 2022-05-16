@@ -8,11 +8,11 @@ if(!isset($_SESSION)){
     $localhost = 'localhost';
     $username = 'root';
     $password = '';
-    $db_name = 'buy_book';
+    $db_name = 'cnpm';
 
     $mysqli = new mysqli($localhost, $username, $password, $db_name);
     $conn = mysqli_connect($localhost,$username, $password , $db_name  ) ; //Database Connection
-    define('SITEURL', 'http://localhost/PROJECT/');
+    define('SITEURL', 'http://localhost/CNPM/');
 
     
 ?>
