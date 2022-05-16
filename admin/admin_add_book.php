@@ -141,7 +141,7 @@ if (isset($_POST['submit'])) {
 
         //Create a Session Variable to Display Message
         $_SESSION['add'] = "<div class='danger'>thêm thành công</div>";
-        header("location: admin_book.php");
+        header("location: index.php");
     } else {
 
         $_SESSION['add'] = "<div class='error'>không hợp lệ</div>";
