@@ -14,7 +14,7 @@ $search = mysqli_real_escape_string($conn, $_POST['search']);
         <?php
 
 
-        $sql = "SELECT * FROM books WHERE book_title LIKE '%$search%' OR book_descr LIKE '%$search%'";
+        $sql = "SELECT * FROM books WHERE book_title LIKE '%$search%'";
 
         //Execute the Query
         $res = mysqli_query($conn, $sql);

@@ -54,7 +54,7 @@ $title = "Administration section";
             }
 
             if($pass==$passTrue){
-                header("Location:admin_book.php");
+                header("Location:index.php");
                 $_SESSION['login'] = $user_name;
             }
             else{
