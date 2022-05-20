@@ -82,12 +82,13 @@ if (isset($_POST['submit'])) {
         $pass_save = $row['password'];
         if (password_verify($pass, $pass_save)) {
             $_SESSION['login'] = "<div class='danger'>Đăng nhập thành công.</div>";
+            $response = 'Đăng nhập thành công.';
             $_SESSION['user'] = $email;
             $_SESSION['userid'] = $row['userid'];
 
 
             
-            header("Location:index.php");
+            header("Location:index.php?response=$response");
         } else {
             $response = 'Mật khẩu sai';
             header("Location:" . SITEURL . "login.php?response=$response");

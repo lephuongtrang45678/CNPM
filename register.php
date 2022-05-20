@@ -168,66 +168,63 @@ if (isset($_POST['submit'])) {
         $code = md5($string);
         $pass_hash = password_hash($pass1, PASSWORD_DEFAULT);
         $pass_hash_1 = password_hash($pass2, PASSWORD_DEFAULT);
-        if($pass_hash === $pass_hash_1){
-
-
-        $sql2  = "INSERT INTO users (first_name, last_name, avatar, email, password, code ) 
+        if ($pass_hash === $pass_hash_1) {
+            $sql2  = "INSERT INTO users (first_name, last_name, avatar, email, password, code ) 
             VALUES ('$first_name','$last_name', '$target_file', '$email','$pass_hash', '$code')";
-        $res2 = mysqli_query($conn, $sql2); // voi lenh insert thanh cong tra ve so nguyen
-        if ($res2 > 0) {
-            require './sendEmailv1/Exception.php';
-            require './sendEmailv1/PHPMailer.php';
-            require './sendEmailv1/SMTP.php';
+            $res2 = mysqli_query($conn, $sql2); // voi lenh insert thanh cong tra ve so nguyen
+            if ($res2 > 0) {
+                require './sendEmailv1/Exception.php';
+                require './sendEmailv1/PHPMailer.php';
+                require './sendEmailv1/SMTP.php';
 
-            // Instantiation and passing `true` enables exceptions
-            $mail = new PHPMailer(true);
+                // Instantiation and passing `true` enables exceptions
+                $mail = new PHPMailer(true);
 
-            try {
-                //Server settings
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable verbose debug output
-                $mail->isSMTP(); // gửi mail SMTP
-                $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
-                $mail->SMTPAuth = true; // Enable SMTP authentication
-                $mail->Username = 'lephuongtrang45678@gmail.com'; // SMTP username
-                $mail->Password = 'tyajhtyhonkocefz'; // SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-                $mail->Port = 587; // TCP port to connect to
-                $mail->CharSet = 'UTF-8';
-                //Recipients
-                $mail->setFrom('lephuongtrang45678@gmail.com', 'Mua Sách Mới, Sách Hot, Sách Hay Nên Đọc Online');
+                try {
+                    //Server settings
+                    $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable verbose debug output
+                    $mail->isSMTP(); // gửi mail SMTP
+                    $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
+                    $mail->SMTPAuth = true; // Enable SMTP authentication
+                    $mail->Username = 'lephuongtrang45678@gmail.com'; // SMTP username
+                    $mail->Password = 'tyajhtyhonkocefz'; // SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+                    $mail->Port = 587; // TCP port to connect to
+                    $mail->CharSet = 'UTF-8';
+                    //Recipients
+                    $mail->setFrom('lephuongtrang45678@gmail.com', 'Mua Sách Mới, Sách Hot, Sách Hay Nên Đọc Online');
 
-                $mail->addReplyTo('lephuongtrang45678@gmail.com', 'Mua Sách Mới, Sách Hot, Sách Hay Nên Đọc Online');
+                    $mail->addReplyTo('lephuongtrang45678@gmail.com', 'Mua Sách Mới, Sách Hot, Sách Hay Nên Đọc Online');
 
-                $mail->addAddress($email); // Add a recipient
-
-
-                // Content
-                $mail->isHTML(true);   // Set email format to HTML
-                $tieude = 'Xác nhận tài khoản';
-                $mail->Subject = $tieude;
-                // gui ve thong bao                   
-                $linkemail = "http://localhost/PROJECT/active_user.php?email=" . $email . "&code=" . $code;
-                // Mail body content 
-                $bodyContent .= '<p><b>Hãy xác nhận email đăng ký tài khoảng </b></p>';
-                $bodyContent .= '<a href=' . $linkemail . '>Kích hoạt</a>';
+                    $mail->addAddress($email); // Add a recipient
 
 
-                $mail->Body = $bodyContent;
-                // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-                if ($mail->send()) {
-                    echo 'Thư đã được gửi đi, vào Email Email kiểm tra!';
-                } else {
-                    echo 'Lỗi. Thư chưa gửi được';
+                    // Content
+                    $mail->isHTML(true);   // Set email format to HTML
+                    $tieude = 'Xác nhận tài khoản';
+                    $mail->Subject = $tieude;
+                    // gui ve thong bao                   
+                    $linkemail = "http://localhost/PROJECT/active_user.php?email=" . $email . "&code=" . $code;
+                    // Mail body content 
+                    $bodyContent .= '<p><b>Hãy xác nhận email đăng ký tài khoảng </b></p>';
+                    $bodyContent .= '<a href=' . $linkemail . '>Kích hoạt</a>';
+
+
+                    $mail->Body = $bodyContent;
+                    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                    if ($mail->send()) {
+                        echo 'Thư đã được gửi đi, vào Email Email kiểm tra!';
+                    } else {
+                        echo 'Lỗi. Thư chưa gửi được';
+                    }
+                } catch (Exception $e) {
+                    echo "Thư không thể gửi được . Mailer lỗi: {$mail->ErrorInfo}";
                 }
-            } catch (Exception $e) {
-                echo "Thư không thể gửi được . Mailer lỗi: {$mail->ErrorInfo}";
-            }
 
-            $value = 'đăng ký thành công';
-            header("Location:" . SITEURL . "login.php?response=$value");
-        }
-        }
-        else{
+                $value = 'đăng ký thành công';
+                header("Location:" . SITEURL . "login.php?response=$value");
+            }
+        } else {
             $value = 'mật khẩu không trùng nhau';
             header("Location:" . SITEURL . "register.php?response=$value");
         }

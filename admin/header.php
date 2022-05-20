@@ -39,15 +39,10 @@ if (!isset($_SESSION['login'])) {
                         <li class="nav-item">
                             <a class="nav-link" href="index.php"><i class="fas fa-home"></i>Trang chủ</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle hover-th" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quản lý
-                            </a>
-                            <ul class="dropdown-menu my-subnav" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="admin_book.php">Sách</a></li>
-                                <li><a class="dropdown-item" href="publisher.php">Nhà xuất bản</a>
-                                </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="publisher.php">Nhà xuất bản</a>
 
-                            </ul>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="reply.php"><i class="fal fa-phone-rotary"></i>Xử lý phản hồi</a>
