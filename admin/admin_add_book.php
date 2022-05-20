@@ -140,13 +140,13 @@ if (isset($_POST['submit'])) {
         //Data Inserted
 
         //Create a Session Variable to Display Message
-        $_SESSION['add'] = "<div class='danger'>thêm thành công</div>";
-        header("location: index.php");
+        $value = 'thêm sách thành công';
+        header("location: index.php?response=$value");
     } else {
 
-        $_SESSION['add'] = "<div class='error'>không hợp lệ</div>";
+        $value = 'không hợp lệ';
         //Redirect Page to Add Admin
-        header("location: admin_add_book.php");
+        header("location: admin_add_book.php?response=$value");
     }
 }
 
