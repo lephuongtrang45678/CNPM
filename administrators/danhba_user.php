@@ -5,12 +5,6 @@ include('index.php');
     <h4>Danh bạ người dùng</h4>
 </div>
 <div class="col-12  mt-4">
-    <a href="./add_user.php" class="">
-        <button type="submit" name="submit" class="btn btn-danger ">
-            <h5>Thêm </h5x>
-        </button>
-    </a>
-</div>
 <div class="col mt-5" id="table-nhanvien">
     <table class="table">
         <thead>
@@ -22,7 +16,6 @@ include('index.php');
                 <th scope="col">Email</th>
                 <th scope="col">Mật khẩu</th>
                 <th scope="col">status</th>
-                <th scope="col">Sửa</th>
                 <th scope="col">Xóa</th>
                 <th scope="col" style="width: 10%;">Ảnh đại diện</th>
 
@@ -51,7 +44,6 @@ include('index.php');
                         <td><?php echo $row['email']; ?> </td>
                         <td style="width: 50rem;"><?php echo $row['password']; ?> </td>
                         <td><?php echo $row['status']; ?> </td>
-                        <td><a href="edit_user.php?userid=<?php echo $row['userid']; ?>"><i class="fas fa-edit text-danger"></i></a></td>
                         <td><a href="delete_user.php?userid=<?php echo $row['userid']; ?>"><i class="fas fa-trash text-danger"></i></a></td>
                         <td>
                             <div class="d-flex justify-content-center">

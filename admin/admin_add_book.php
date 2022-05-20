@@ -37,7 +37,7 @@ ob_start();
                     <input type="text" name="book_price" class="form-control" id="book_price" placeholder="1200">
                 </div>
                 <div class="col-md-4">
-                    <label for="publisherid" class="form-label">Nhà sản xuất</label>
+                    <label for="publisherid" class="form-label">Ma nhà sản xuất</label>
                     <input type="text" name="publisherid" class="form-control" id="publisherid" placeholder="Wrox">
                 </div>
                 <div class="col-md-4">

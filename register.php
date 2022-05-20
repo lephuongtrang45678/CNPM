@@ -167,6 +167,10 @@ if (isset($_POST['submit'])) {
         $string = rand();
         $code = md5($string);
         $pass_hash = password_hash($pass1, PASSWORD_DEFAULT);
+        $pass_hash_1 = password_hash($pass2, PASSWORD_DEFAULT);
+        if($pass_hash === $pass_hash_1){
+
+
         $sql2  = "INSERT INTO users (first_name, last_name, avatar, email, password, code ) 
             VALUES ('$first_name','$last_name', '$target_file', '$email','$pass_hash', '$code')";
         $res2 = mysqli_query($conn, $sql2); // voi lenh insert thanh cong tra ve so nguyen
@@ -221,6 +225,11 @@ if (isset($_POST['submit'])) {
 
             $value = 'đăng ký thành công';
             header("Location:" . SITEURL . "login.php?response=$value");
+        }
+        }
+        else{
+            $value = 'mật khẩu không trùng nhau';
+            header("Location:" . SITEURL . "register.php?response=$value");
         }
     }
 }
